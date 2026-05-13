@@ -5,7 +5,7 @@ public class AplMain {
 	public static void main(String[] args) {
 		
 		Controller cc = new Controller();
-		cc.run();
+		cc.run(); 
 	}
 
 }
