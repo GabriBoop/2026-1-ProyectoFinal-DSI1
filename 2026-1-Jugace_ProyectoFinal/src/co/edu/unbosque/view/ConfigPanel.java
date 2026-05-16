@@ -1,33 +1,40 @@
 package co.edu.unbosque.view;
+import java.awt.FlowLayout;
+
 import javax.swing.*;
 
 public class ConfigPanel {
 	
-	private static JPanel confPanel = new JPanel();
-	private JComboBox selectdiff = new JComboBox();
-	private String[] diff ={"Baja", "Media", "Alta"};
-	private JSpinner spinFILAS = new JSpinner();
-	private JSpinner spinCOLUMNAS = new JSpinner();
-	private JSpinner spinPUERTOS = new JSpinner();
+	private static JPanel confPanel = new JPanel(); //Panel y mucha cosa rara
 	
-	private JButton botOK = new JButton();
+	private JComboBox selectdiff = new JComboBox(); //Densidad de enemigos
+	private String[] diff ={"Baja", "Media", "Alta", "CULOTE MASIVO"}; //Lista de dificultad / Densidad de enemgios
 	
-	private JCheckBox chkINVERSO = new JCheckBox();
+	private JSpinner spinFILAS = new JSpinner(); //Cokocar Filas
+	private JSpinner spinCOLUMNAS = new JSpinner(); //Cokocar Columnas
+	private JSpinner spinPUERTOS = new JSpinner(); //Cokocar Puertos
+	
+	private JCheckBox chkINVERSO = new JCheckBox(); //Check de Juego Inverso
+	
+	private JButton botOK = new JButton(); //Boton Final
+	
+	
 	
 	public ConfigPanel() {
 		
-		selectdiff = new JComboBox(diff);
-		spinFILAS = new JSpinner(new SpinnerNumberModel(10,5, 20, 1));
-		spinCOLUMNAS = new JSpinner(new SpinnerNumberModel(10,5, 20, 1));
+		selectdiff = new JComboBox(diff);  //Creacion de Densidad de emeg
+		
+		spinFILAS = new JSpinner(new SpinnerNumberModel(10,5, 20, 1));   //PREDETERMINADO-MIN-MAX-INCREMENTO
+		spinCOLUMNAS = new JSpinner(new SpinnerNumberModel(10,5, 20, 1)); //Spin de las Filas, Columnas y puertos...
 		spinPUERTOS = new JSpinner(new SpinnerNumberModel(3,2, 5, 1));
 		
-		botOK.setText("LISTO");
+		botOK.setText("LISTO"); //Boton
 		
 		chkINVERSO.setText("¿Orden Inverso?");
 		
-		confPanel.setLayout(new BoxLayout(confPanel, BoxLayout.Y_AXIS));
+		confPanel.setLayout(new FlowLayout());
 		
-		confPanel.add(selectdiff);
+		confPanel.add(selectdiff); //Adicion todo al paneñ
 		confPanel.add(spinFILAS);
 		confPanel.add(spinCOLUMNAS);
 		confPanel.add(spinPUERTOS);

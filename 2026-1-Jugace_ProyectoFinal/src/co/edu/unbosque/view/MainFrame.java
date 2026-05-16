@@ -10,7 +10,7 @@ import javax.swing.*;
 
 public class MainFrame extends JFrame{ 
 	
-	private static final int ANCHO = 800;
+	private static final int ANCHO = 800; //Dimensiones de Pantalla
 	private static final int ALTO = 600;
 	
 	public MainFrame() {
@@ -19,14 +19,14 @@ public class MainFrame extends JFrame{
 		setTitle("--GAME--");
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setLayout(new BorderLayout());
-		setLocationRelativeTo(null);
+		setLocationRelativeTo(null); // Asegura que siempre salga en el cemtro de la pantalla del computador
 		
 	}
 	
-	 public void cambiarPanel(JPanel panel) {
+	 public void cambiarPanel(JPanel panel) { //Cambio de pameñ (EJ: Config a Juego)
 	        getContentPane().removeAll();
 	        getContentPane().add(panel, BorderLayout.CENTER);
-	        revalidate();
+	        revalidate(); //Revalida todo lo del Frame y no se gemerem errpres visuales
 	        repaint();
 	    }
 	

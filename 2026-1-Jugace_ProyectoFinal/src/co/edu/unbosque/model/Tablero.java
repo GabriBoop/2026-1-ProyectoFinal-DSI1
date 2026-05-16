@@ -1,12 +1,15 @@
 package co.edu.unbosque.model;
 
-import co.edu.unbosque.controller.Controller;
+import co.edu.unbosque.controller.*;
+import co.edu.unbosque.model.*;
 
 public class Tablero {
-	
+	// ¡ESTO NO HA SIDO USADO!
 	 private int filas;
 	 private int columnas;
+	 private Player jugador;
 	 private Casilla[][] casillas;
+	 private Puertos puertos;
 	 
 	 public Tablero() {
 		 
@@ -17,14 +20,25 @@ public class Tablero {
 	        for (int i = 0; i < filas; i++) {
 	            for (int j = 0; j < columnas; j++) {
 	                casillas[i][j] = new Casilla(i, j);
+	                casillas[i][j].setTipo("NA");
+	            }
+	        }
+	        
+	        for (int i = 0; i < filas; i++) {
+	            for (int j = 0; j < columnas; j++) {
+	                casillas[i][j] = new Casilla(i, j);
 	            }
 	        }
 	    }
+	 
 
-	 public Casilla getCasilla(int fila, int col) {
+	
+	 
+	 public Casilla setCasilla(int fila, int col) {
 		 return casillas[fila][col]; 
 	 }
-	 public Casilla[][] getCasillas() {
+	 
+	 public Casilla[][] getCasilla() {
 	    return casillas; 
 	 }
 

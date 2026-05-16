@@ -1,13 +1,12 @@
 package co.edu.unbosque.model;
 
-public class Player {
-	
+public class Paquete {
+	// ¡ESTO POSIBLEMENTE SE QUITE!
 	private int fila;
 	private int columna;
-	private int puertosTocados = 0;
 	private Casilla[][] casilla; // ¡ESTO NO HA SIDO USADO!
 	
-	public Player(int fila, int columna) {
+	public Paquete(int fila, int columna) {
         this.fila = fila;
         this.columna = columna;
     }
@@ -28,25 +27,13 @@ public class Player {
 		this.columna = columna;
 	}
 	
-	public int getPuertosTocados() {
-		return puertosTocados;
-	}
-
-	public void setPuertosTocados(int puertosTocados) {
-		this.puertosTocados = puertosTocados;
-	}
-
-	public void setCasilla(Casilla[][] casilla) {
-		this.casilla = casilla;
-	}
-
 	public Casilla setCasilla(int fila, int col) {
 		 return casilla[fila][col]; 
-	 }
+	}
 	 public Casilla[][] getCasilla() {
 	    return casilla; 
-	 }
-	
+    }
 	
 
+	
 }
