@@ -3,6 +3,7 @@ import co.edu.unbosque.view.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+
 public class ConfigController implements ActionListener{
 
 	private static ConfigPanel configPanel;
@@ -27,6 +28,7 @@ public class ConfigController implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		switch (e.getActionCommand()) {
 		case "BotOK":
+			
 			Controller.FILA = (int) configPanel.getSpinFILAS().getValue(); //Actualizacion de todas la variables
 			Controller.COLUMNA = (int) configPanel.getSpinCOLUMNAS().getValue();
 			Controller.GRID_TOTAL = Controller.FILA * Controller.COLUMNA;
@@ -36,10 +38,32 @@ public class ConfigController implements ActionListener{
 				Controller.INVERSO = true;
 			}
 			int s = (int) configPanel.getSelectdiff().getSelectedIndex();
-			if(s == 0) Controller.CANT_ANTIVIRUS = 2;
-			if(s == 1) Controller.CANT_ANTIVIRUS = 3;
-			if(s == 2) Controller.CANT_ANTIVIRUS = 4;
-			if(s == 3) Controller.CANT_ANTIVIRUS = 5;
+			if(s == 0) { //Facil
+				Controller.CANT_ANTIVIRUS = 2;
+				Controller.CANT_NODOS = 3;
+				Controller.CANT_SCANNERS = 2;
+				Controller.CANT_FIREWALLS = 2;
+			}
+			if(s == 1) { //NORMAL
+				Controller.CANT_ANTIVIRUS = 2;
+				Controller.CANT_NODOS = 2;
+				Controller.CANT_SCANNERS = 3;
+				Controller.CANT_FIREWALLS = 3;
+			}
+			if(s == 2) { //DIFICL
+				Controller.CANT_ANTIVIRUS = 3;
+				Controller.CANT_NODOS = 1;
+				Controller.CANT_SCANNERS = 3;
+				Controller.CANT_FIREWALLS = 4;
+			}
+			if(s == 3) { //67
+				Controller.CANT_ANTIVIRUS = 6;
+				Controller.CANT_NODOS = 0;
+				Controller.CANT_SCANNERS = 5;
+				Controller.CANT_FIREWALLS = 5;
+			}
+			String diffTXT = configPanel.getSelectdiff().getSelectedItem().toString();
+			Controller.vnt.setTitle("CYBER INFILTRATOR, DIFICULTAD: "+diffTXT);
 			
 			Controller.actualizarTablero(); //Actualizar variables restantes
 			Controller.mostrarTablero();; //Volver al controller

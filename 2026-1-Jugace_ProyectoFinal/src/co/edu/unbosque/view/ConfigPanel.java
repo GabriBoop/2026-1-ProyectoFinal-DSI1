@@ -1,6 +1,8 @@
 package co.edu.unbosque.view;
-import java.awt.FlowLayout;
-
+import java.awt.Color;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 import javax.swing.*;
 
 public class ConfigPanel {
@@ -32,14 +34,27 @@ public class ConfigPanel {
 		
 		chkINVERSO.setText("¿Orden Inverso?");
 		
-		confPanel.setLayout(new FlowLayout());
+		confPanel.setLayout(new GridBagLayout());
+		confPanel.setBackground(new Color(15, 0, 50));
 		
-		confPanel.add(selectdiff); //Adicion todo al paneñ
-		confPanel.add(spinFILAS);
-		confPanel.add(spinCOLUMNAS);
-		confPanel.add(spinPUERTOS);
-		confPanel.add(chkINVERSO);
-		confPanel.add(botOK);
+		GridBagConstraints gbc = new GridBagConstraints();
+		gbc.gridx = 0;          
+		gbc.insets = new Insets(5, 10, 10, 10); 
+		gbc.fill = GridBagConstraints.HORIZONTAL;
+
+		ImageIcon icon = new ImageIcon("src/co/edu/unbosque/images/logo.png");
+		JLabel lbl_logo = new JLabel(icon);
+
+		confPanel.removeAll();
+		
+		
+		confPanel.add(lbl_logo, gbc);
+		confPanel.add(selectdiff, gbc); //Adicion todo al paneñ
+		confPanel.add(spinFILAS, gbc);
+		confPanel.add(spinCOLUMNAS, gbc);
+		confPanel.add(spinPUERTOS, gbc);
+		confPanel.add(chkINVERSO, gbc);
+		confPanel.add(botOK, gbc);
 	}
 	
 	public static JPanel getPanel() {

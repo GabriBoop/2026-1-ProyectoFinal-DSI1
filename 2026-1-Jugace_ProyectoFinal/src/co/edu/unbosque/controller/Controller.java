@@ -16,10 +16,15 @@ public class Controller{
 	public static int COLUMNA = 5; //Columnas
 	public static int GRID_TOTAL = FILA*COLUMNA; //Filas * Columnas
 	public static int MOV = GRID_TOTAL; //Movimientos, igual q GridTotal
-	public static int PUERTOS = 3; //Cantidad de puertos a tocar
+	
 	public static boolean INVERSO = false; //Check si el orden de los puertos es inverso o no
-	public static int CANT_ANTIVIRUS = 2; // Cantidad de enemigos calculada por dificultad 
-
+	
+	public static int PUERTOS = 3; //Cantidad de puertos a tocar
+	public static int CANT_ANTIVIRUS = 2; // Cantidad de enemigos y nodos calculada por dificultad 
+	public static int CANT_NODOS = 2; 
+	public static int CANT_SCANNERS = 2; 
+	public static int CANT_FIREWALLS = 2;
+	
 	public static MainFrame vnt; //Importacion todo lo grafico
 	private static VerTablero verTablero;
 	private static MovimientosPanel movimientosPanel;
@@ -28,8 +33,12 @@ public class Controller{
 	private static Player jugador; //Creacion objetos
 	private static Tablero tablero;
 	private static Paquete paquete;
+	
 	private static Puertos[] puerto = new Puertos[PUERTOS];
 	private static AntiVirus[] antivirus = new AntiVirus[CANT_ANTIVIRUS];
+	private static Nodo[] nodo = new Nodo[CANT_NODOS];
+	private static Scanner[] scanner = new Scanner[CANT_SCANNERS];
+	private static FireWalls[] firewall = new FireWalls[CANT_FIREWALLS];
 	
 	public Controller(){
 		
@@ -54,11 +63,11 @@ public class Controller{
 	    tablero.setCasilla(0, 0).setTipo("PLAYER");
 	    tablero.setCasilla(1, 1).setTipo("PAQUETE");
 	    
-	    GeneradorTablero.run(jugador,paquete,puerto,PUERTOS, antivirus, CANT_ANTIVIRUS); //Genera Talbero
+	    GeneradorTablero.run(tablero,jugador,paquete,puerto,PUERTOS, antivirus,nodo, CANT_ANTIVIRUS); //Genera Talbero
 	    
 	    JPanel game = new JPanel(new BorderLayout()); //Nuevo Panel que contiene el Grid del juego y panel de movimiento.
 	    
-	    movimientoController = new MovimientoController(jugador,paquete,verTablero,movimientosPanel,puerto, antivirus);
+	    movimientoController = new MovimientoController(tablero,jugador,paquete,puerto,antivirus,nodo,scanner,firewall,verTablero,movimientosPanel);
 	    movimientoController.input();
 	    
 	    movimientosPanel.getTxt().setText("MOVIMIENTOS: " + MOV + " / " + GRID_TOTAL); //Cosas del Panel Superior: Movimiento y Puertos
@@ -69,9 +78,8 @@ public class Controller{
 	    game.add(movimientosPanel.getPanel(), BorderLayout.NORTH);
 
 	    
-	    verTablero.ver(jugador.getFila(), jugador.getColumna(), paquete.getFila(), paquete.getColumna(), puerto, antivirus);
+	    verTablero.ver(tablero, puerto, antivirus);
 	    vnt.cambiarPanel(game);
-	    
 	    SwingUtilities.invokeLater(() -> { //Funcionamiento de Input
 	        movimientoController.requestFocusInWindow();
 	    });
@@ -82,18 +90,21 @@ public class Controller{
 		MOV = GRID_TOTAL;
 		puerto = new Puertos[PUERTOS];
 		antivirus = new AntiVirus[CANT_ANTIVIRUS];
+		nodo = new Nodo[CANT_NODOS];
+		scanner = new Scanner[CANT_SCANNERS];
+		firewall = new FireWalls[CANT_FIREWALLS];
 	    verTablero = new VerTablero(); 
 	}
 	
 	public static void gameOver() { //Panel de GameOver
 		GameOver gameover = new GameOver(); 
-		
+		vnt.cambiarPanel(gameover.getPanel());
 		gameover.getBtnRestart().addActionListener(new ActionListener() {
 	        
 	        public void actionPerformed(ActionEvent e) {
 	            ConfigController.run();
 	        }
 	    });
-	    vnt.cambiarPanel(gameover.getPanel());
+	    
 	}
 }

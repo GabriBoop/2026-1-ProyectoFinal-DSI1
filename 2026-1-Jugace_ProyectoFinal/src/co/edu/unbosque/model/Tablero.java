@@ -23,15 +23,7 @@ public class Tablero {
 	                casillas[i][j].setTipo("NA");
 	            }
 	        }
-	        
-	        for (int i = 0; i < filas; i++) {
-	            for (int j = 0; j < columnas; j++) {
-	                casillas[i][j] = new Casilla(i, j);
-	            }
-	        }
-	    }
-	 
-
+	 }
 	
 	 
 	 public Casilla setCasilla(int fila, int col) {

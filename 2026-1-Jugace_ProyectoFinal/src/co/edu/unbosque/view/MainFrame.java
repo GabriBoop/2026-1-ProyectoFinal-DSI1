@@ -30,7 +30,9 @@ public class MainFrame extends JFrame{
 	        repaint();
 	    }
 	
-	
+	 public void setTitulo(String txt) {
+		    this.setTitle(txt); 
+		}
 	
 		
 }
