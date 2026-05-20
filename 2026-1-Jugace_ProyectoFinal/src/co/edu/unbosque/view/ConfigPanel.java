@@ -2,6 +2,7 @@ package co.edu.unbosque.view;
 import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Image;
 import java.awt.Insets;
 import javax.swing.*;
 
@@ -10,7 +11,7 @@ public class ConfigPanel {
 	private static JPanel confPanel = new JPanel(); //Panel y mucha cosa rara
 	
 	private JComboBox selectdiff = new JComboBox(); //Densidad de enemigos
-	private String[] diff ={"Baja", "Media", "Alta", "CULOTE MASIVO"}; //Lista de dificultad / Densidad de enemgios
+	private String[] diff ={"FACIL", "NORMAL", "MODERADO", "DIFICL", "MITU"}; //Lista de dificultad / Densidad de enemgios
 	
 	private JSpinner spinFILAS = new JSpinner(); //Cokocar Filas
 	private JSpinner spinCOLUMNAS = new JSpinner(); //Cokocar Columnas
@@ -26,12 +27,17 @@ public class ConfigPanel {
 		
 		selectdiff = new JComboBox(diff);  //Creacion de Densidad de emeg
 		
-		spinFILAS = new JSpinner(new SpinnerNumberModel(10,5, 20, 1));   //PREDETERMINADO-MIN-MAX-INCREMENTO
+		spinFILAS = new JSpinner(new SpinnerNumberModel(5,5, 20, 1));   //PREDETERMINADO-MIN-MAX-INCREMENTO
 		spinCOLUMNAS = new JSpinner(new SpinnerNumberModel(10,5, 20, 1)); //Spin de las Filas, Columnas y puertos...
 		spinPUERTOS = new JSpinner(new SpinnerNumberModel(3,2, 5, 1));
 		
-		botOK.setText("LISTO"); //Boton
-		
+		ImageIcon imgB = new ImageIcon("src/co/edu/unbosque/images/botonok.png"); // Cambia por el nombre real de tu archivo
+	    botOK.setIcon(imgB);
+	    
+		botOK.setText(""); //Boton
+		botOK.setOpaque(false);
+		botOK.setBorderPainted(false);
+		botOK.setContentAreaFilled(false);
 		chkINVERSO.setText("¿Orden Inverso?");
 		
 		confPanel.setLayout(new GridBagLayout());

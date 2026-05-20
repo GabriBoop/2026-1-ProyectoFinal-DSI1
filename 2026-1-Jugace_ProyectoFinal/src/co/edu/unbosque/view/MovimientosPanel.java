@@ -16,11 +16,13 @@ public class MovimientosPanel extends JPanel {
 		movPanel.setLayout(new FlowLayout());
         txt.setText("MOVIMIENTOS: 0"); //Label donde salen los movimientos totales y restantes, se acomoda en Controller y Movimiento Panel
         prt.setText("PUERTOS"); //Label donde salen los Puertos totales y restantes, se acomoda en Controller y Movimiento Panel
-        
+        txt.setForeground(Color.WHITE);
+        prt.setForeground(Color.WHITE);
         movPanel.add(txt); 
         movPanel.add(prt);
         
         setLayout(new BorderLayout());
+        movPanel.setBackground(new Color(105, 0, 190));
         add(movPanel, BorderLayout.CENTER);
 	}
 

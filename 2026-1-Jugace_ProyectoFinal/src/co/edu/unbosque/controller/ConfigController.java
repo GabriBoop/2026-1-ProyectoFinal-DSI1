@@ -9,6 +9,7 @@ public class ConfigController implements ActionListener{
 	private static ConfigPanel configPanel;
 	
 	public static void run() {
+		ReproducirAudio.reproducir("/co/edu/unbosque/sound/solo.wav");
 		configPanel = new ConfigPanel();
 		
 		ConfigController lector = new ConfigController();
@@ -37,36 +38,46 @@ public class ConfigController implements ActionListener{
 			if(configPanel.getChkINVERSO().isSelected()) {  //asegura que se active eñ Inverso
 				Controller.INVERSO = true;
 			}
+			else {
+				Controller.INVERSO = false;
+			}
 			int s = (int) configPanel.getSelectdiff().getSelectedIndex();
 			if(s == 0) { //Facil
 				Controller.CANT_ANTIVIRUS = 2;
-				Controller.CANT_NODOS = 3;
+				Controller.CANT_NODOS = 4;
 				Controller.CANT_SCANNERS = 2;
-				Controller.CANT_FIREWALLS = 2;
+				Controller.CANT_FIREWALLS = (int) (Controller.GRID_TOTAL * 0.06);
 			}
 			if(s == 1) { //NORMAL
-				Controller.CANT_ANTIVIRUS = 2;
-				Controller.CANT_NODOS = 2;
-				Controller.CANT_SCANNERS = 3;
-				Controller.CANT_FIREWALLS = 3;
-			}
-			if(s == 2) { //DIFICL
 				Controller.CANT_ANTIVIRUS = 3;
-				Controller.CANT_NODOS = 1;
+				Controller.CANT_NODOS = 3;
 				Controller.CANT_SCANNERS = 3;
-				Controller.CANT_FIREWALLS = 4;
+				Controller.CANT_FIREWALLS = (int) (Controller.GRID_TOTAL * 0.10);
 			}
-			if(s == 3) { //67
+			if(s == 2) { //MODEDARO
+				Controller.CANT_ANTIVIRUS = 4;
+				Controller.CANT_NODOS = 2;
+				Controller.CANT_SCANNERS = 4;
+				Controller.CANT_FIREWALLS = (int) (Controller.GRID_TOTAL * 0.12);
+			}
+			if(s == 3) { //DIFICL
 				Controller.CANT_ANTIVIRUS = 6;
-				Controller.CANT_NODOS = 0;
+				Controller.CANT_NODOS = 1;
 				Controller.CANT_SCANNERS = 5;
-				Controller.CANT_FIREWALLS = 5;
+				Controller.CANT_FIREWALLS = (int) (Controller.GRID_TOTAL * 0.18);
+			}
+			if(s == 4) { //EXPERTO
+				Controller.CANT_ANTIVIRUS = 9;
+				Controller.CANT_NODOS = 0;
+				Controller.CANT_SCANNERS = 9;
+				Controller.CANT_FIREWALLS = (int) (Controller.GRID_TOTAL * 0.20);
 			}
 			String diffTXT = configPanel.getSelectdiff().getSelectedItem().toString();
 			Controller.vnt.setTitle("CYBER INFILTRATOR, DIFICULTAD: "+diffTXT);
-			
+			ReproducirAudio.detener();
 			Controller.actualizarTablero(); //Actualizar variables restantes
 			Controller.mostrarTablero();; //Volver al controller
+			
 			break;
 		}
 	}

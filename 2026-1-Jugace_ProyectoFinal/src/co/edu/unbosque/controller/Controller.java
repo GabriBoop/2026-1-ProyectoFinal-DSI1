@@ -53,7 +53,7 @@ public class Controller{
 	}
 	
 	public static void mostrarTablero() {
-		
+		ReproducirAudio.reproducir("/co/edu/unbosque/sound/SMOOTH_OPERATOR.wav");
 	    tablero = new Tablero();
 	    movimientosPanel = new MovimientosPanel();
 	    
@@ -63,7 +63,7 @@ public class Controller{
 	    tablero.setCasilla(0, 0).setTipo("PLAYER");
 	    tablero.setCasilla(1, 1).setTipo("PAQUETE");
 	    
-	    GeneradorTablero.run(tablero,jugador,paquete,puerto,PUERTOS, antivirus,nodo, CANT_ANTIVIRUS); //Genera Talbero
+	    GeneradorTablero.run(tablero,jugador,paquete,puerto,PUERTOS, antivirus,nodo,firewall, CANT_ANTIVIRUS); //Genera Talbero
 	    
 	    JPanel game = new JPanel(new BorderLayout()); //Nuevo Panel que contiene el Grid del juego y panel de movimiento.
 	    
@@ -98,8 +98,21 @@ public class Controller{
 	
 	public static void gameOver() { //Panel de GameOver
 		GameOver gameover = new GameOver(); 
+		ReproducirAudio.detener();
 		vnt.cambiarPanel(gameover.getPanel());
 		gameover.getBtnRestart().addActionListener(new ActionListener() {
+	        
+	        public void actionPerformed(ActionEvent e) {
+	            ConfigController.run();
+	        }
+	    });
+	    
+	}
+	public static void win() { //Panel de GameOver
+		WinPanel win = new WinPanel(); 
+		ReproducirAudio.detener();
+		vnt.cambiarPanel(win.getPanel());
+		win.getBtnRestart().addActionListener(new ActionListener() {
 	        
 	        public void actionPerformed(ActionEvent e) {
 	            ConfigController.run();

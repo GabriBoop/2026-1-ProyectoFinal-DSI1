@@ -34,8 +34,4 @@ public class GameOver extends JPanel{
 	public void setBtnRestart(JButton btnRestart) {
 		this.btnRestart = btnRestart;
 	}
-	
-	
-
-
 }

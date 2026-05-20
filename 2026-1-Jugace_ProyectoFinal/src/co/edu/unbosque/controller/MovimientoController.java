@@ -32,7 +32,9 @@ public class MovimientoController extends JPanel implements ActionListener {
         this.movimientospanel = movimientospanel;
     }
 
-    public void input() { //Genuinamente me sorprende q esto sirva
+    public void input() {
+    	
+    	//Genuinamente me sorprende q esto sirva
         InputMap in = getInputMap();
         ActionMap act = getActionMap();
         
@@ -65,13 +67,33 @@ public class MovimientoController extends JPanel implements ActionListener {
     }
 
     // Evita que se borren los puertos se fucking romoan y no salgan
-    private void casillaPUERTO(int fila, int col) {
+    private void casillaRESTAURAR(int fila, int col) {
+    	 tablero.setCasilla(fila, col).setTipo("NA"); //no se pq arregla el bug pero lo arregla amen gracias dios
         for (int i = 0; i < Controller.PUERTOS; i++) {
             if (puerto[i].getFila() == fila && puerto[i].getColumna() == col) {
                 tablero.setCasilla(fila, col).setTipo("PUERTO");
                 return;
             }
-            tablero.setCasilla(fila, col).setTipo("NA"); //no se pq arregla el bug pero lo arregla amen gracias dios
+        }
+        for (int a = 0; a < firewalls.length; a++) {
+            if (firewalls[a] == null) continue;
+            int fa = firewalls[a].getFila();
+            int ca = firewalls[a].getColumna();
+
+            for (int c = 0; c < firewalls.length; c++) {
+                if (a == c || firewalls[c] == null) continue;
+                int fa2 = firewalls[c].getFila();
+                int ca2 = firewalls[c].getColumna();
+
+                // Si hay dos firewalls alineados a 2 de distancia
+                if (ca == ca2 && Math.abs(fa - fa2) == 2) {
+                    // Si la coordenada coincide con el medio de ambos
+                    if (fila == (fa + fa2) / 2 && col == ca) {
+                        tablero.setCasilla(fila, col).setTipo("TRAMPA");
+                        return; 
+                    }
+                }
+            }
         }
     }
 
@@ -84,18 +106,21 @@ public class MovimientoController extends JPanel implements ActionListener {
         int filaPL_temp = filaPL; //Temporales para no contar movimientos si se esta contra una pared.
         int colPL_temp = colPL;
         
-        if(Controller.MOV > 0) { //Te mueves solo si tienes movimientos
+        if(Controller.MOV > 0) {
+        	
+        	//Te mueves solo si tienes movimientos
         	
         switch (direccion) {
             case "ARRIBA":
-            	if (filaPL > 0) { //Verifica q mo salgas del GRID
+            	if (filaPL > 0 && !tablero.setCasilla(filaPL - 1, colPL).getTipo().equals("FIREWALL")) { //Verifica q mo salgas del GRID
+            		verificarTrampa(filaPL - 1,colPL);
             		if((filaPL - 1 == filaPAQ) && (colPL == colPAQ)) { //PAQUETE
             			if(filaPAQ > 0) {
-            				casillaPUERTO(filaPAQ, colPAQ); // Usa el método de restauración
+            				casillaRESTAURAR(filaPAQ, colPAQ); // Usa el método de restauración
             			    paquete.setFila(filaPAQ - 1);
                             tablero.setCasilla(filaPAQ - 1, colPAQ).setTipo("PAQUETE"); // Mueve paquete en matriz
 
-                            casillaPUERTO(filaPL, colPL); // Usa el método de restauración
+                            casillaRESTAURAR(filaPL, colPL); // Usa el método de restauración
             			    jugador.setFila(filaPL - 1);
                             tablero.setCasilla(filaPL - 1, colPL).setTipo("PLAYER"); // Actualiza jugador en matriz
             			}
@@ -115,20 +140,23 @@ public class MovimientoController extends JPanel implements ActionListener {
             					}            					
             				}
             			}
-            			casillaPUERTO(filaPL, colPL);// Usa el método de restauración
+            			casillaRESTAURAR(filaPL, colPL);// Usa el método de restauración
             			jugador.setFila(filaPL - 1); //Mueve el jugador hacia arriba
                         tablero.setCasilla(filaPL - 1, colPL).setTipo("PLAYER"); // Marca nuevo
             		}
                 }
+            	
+            	verificarWin();
                 break;  
             case "ABAJO":
-                if (filaPL < Controller.FILA - 1) { 
+                if (filaPL < Controller.FILA - 1 && !tablero.setCasilla(filaPL + 1, colPL).getTipo().equals("FIREWALL")) { 
+                	verificarTrampa(filaPL + 1,colPL);
                 	if((filaPL + 1 == filaPAQ) && (colPL == colPAQ)) {
             			if(filaPAQ < Controller.FILA - 1) {
             			    paquete.setFila(filaPAQ + 1);
                             tablero.setCasilla(filaPAQ + 1, colPAQ).setTipo("PAQUETE");
 
-                            casillaPUERTO(filaPL, colPL); // Usa el método de restauración
+                            casillaRESTAURAR(filaPL, colPL); // Usa el método de restauración
             			    jugador.setFila(filaPL + 1);
                             tablero.setCasilla(filaPL + 1, colPL).setTipo("PLAYER");
             			}
@@ -146,20 +174,23 @@ public class MovimientoController extends JPanel implements ActionListener {
             					}
             				}
             			}
-            			casillaPUERTO(filaPL, colPL); // Usa el método de restauración
+            			casillaRESTAURAR(filaPL, colPL); // Usa el método de restauración
             			jugador.setFila(filaPL + 1); 
                         tablero.setCasilla(filaPL + 1, colPL).setTipo("PLAYER");
             		}
                 }
+                
+                verificarWin();
                 break;
             case "DERECHA":
-            	if (colPL < Controller.COLUMNA - 1) { 
+            	if (colPL < Controller.COLUMNA - 1 && !tablero.setCasilla(filaPL, colPL+1).getTipo().equals("FIREWALL")) { 
+            		verificarTrampa(filaPL,colPL+1);
                 	if((filaPL == filaPAQ) && (colPL + 1 == colPAQ)) {
             			if(colPAQ < Controller.COLUMNA - 1) {
             			    paquete.setColumna(colPAQ + 1);
                             tablero.setCasilla(filaPAQ, colPAQ + 1).setTipo("PAQUETE");
 
-                            casillaPUERTO(filaPL, colPL);// Usa el método de restauración
+                            casillaRESTAURAR(filaPL, colPL);// Usa el método de restauración
             			    jugador.setColumna(colPL + 1);
                             tablero.setCasilla(filaPL, colPL + 1).setTipo("PLAYER");
             			}
@@ -177,20 +208,23 @@ public class MovimientoController extends JPanel implements ActionListener {
             					}
             				}
             			}
-            			casillaPUERTO(filaPL, colPL); // Usa el método de restauración
+            			casillaRESTAURAR(filaPL, colPL); // Usa el método de restauración
             			jugador.setColumna(colPL + 1); 
                         tablero.setCasilla(filaPL, colPL + 1).setTipo("PLAYER");
             		}
                 }
+            	
+            	verificarWin();
                 break;
             case "IZQUIERDA":
-            	if (colPL > 0) { 
+            	if (colPL > 0 && !tablero.setCasilla(filaPL, colPL-1).getTipo().equals("FIREWALL")) { 
+            		verificarTrampa(filaPL,colPL- 1);
                 	if((filaPL == filaPAQ) && (colPL - 1 == colPAQ)) {
             			if(colPAQ > 0) {
             			    paquete.setColumna(colPAQ - 1);
                             tablero.setCasilla(filaPAQ, colPAQ - 1).setTipo("PAQUETE");
 
-                            casillaPUERTO(filaPL, colPL); // Usa el método de restauración
+                            casillaRESTAURAR(filaPL, colPL); // Usa el método de restauración
             			    jugador.setColumna(colPL - 1);
                             tablero.setCasilla(filaPL, colPL - 1).setTipo("PLAYER");
             			}
@@ -208,11 +242,13 @@ public class MovimientoController extends JPanel implements ActionListener {
             					}
             				}
             			}
-            			casillaPUERTO(filaPL, colPL); // Usa el método de restauración
+            			casillaRESTAURAR(filaPL, colPL); // Usa el método de restauración
             			jugador.setColumna(colPL - 1); 
                         tablero.setCasilla(filaPL, colPL - 1).setTipo("PLAYER");
             		}
                 }
+            	
+            	verificarWin();
                 break;
             case "RESET":
             Controller.gameOver();
@@ -221,7 +257,6 @@ public class MovimientoController extends JPanel implements ActionListener {
         // Obtener la fila y columna NUEVAS del player despues de moverse
         filaPL = jugador.getFila(); //Actualizar
     	colPL = jugador.getColumna();
-    	if (nodo != null) {
     	for(int n = 0; n < Controller.CANT_NODOS; n++) {
     	    if(nodo[n] != null && nodo[n].isAct()) { // <-- El "!= null" evita que el juego se rompa
     	        if(nodo[n].getFila() == filaPL && nodo[n].getColumna() == colPL) {
@@ -233,13 +268,11 @@ public class MovimientoController extends JPanel implements ActionListener {
     	        }
     	    }
     	}
-    	}
+    	
         for(int a = 0; a < antivirus.length; a++) { 
         	int filaANT = antivirus[a].getFila();
         	int colANT = antivirus[a].getColumna();
-        	
-        	
-    	
+        
         	if((filaANT + 1 == filaPL) && (colANT == colPL)) { //ABAJO
         		Controller.gameOver();
         	}
@@ -272,12 +305,12 @@ public class MovimientoController extends JPanel implements ActionListener {
         			int ran1 = (int) (Math.random() * 3) - 1;
         			int filaANTnew = filaANT + ran1; 
         			
-        			if (filaANTnew >= 0 && filaANTnew < Controller.FILA) {
+        			if (filaANTnew >= 0 && filaANTnew < Controller.FILA ) {
         				
                         String tp = tablero.setCasilla(filaANTnew, colANT).getTipo();
 
         				if(tp.equals("NA")) {
-        					casillaPUERTO(filaANT, colANT);  // Usa el método de restauración para los virus también
+        					casillaRESTAURAR(filaANT, colANT);  // Usa el método de restauración para los virus también
         					antivirus[a].setFila(filaANTnew);
                 			filaANT = filaANTnew; 
                             tablero.setCasilla(filaANT, colANT).setTipo("ANTIVIRUS"); // Marca nueva
@@ -293,7 +326,7 @@ public class MovimientoController extends JPanel implements ActionListener {
             			String tp = tablero.setCasilla(filaANT, colANTnew).getTipo();
 
         				if(tp.equals("NA")) {
-        					casillaPUERTO(filaANT, colANT); // Usa el método de restauración para los virus también
+        					casillaRESTAURAR(filaANT, colANT); // Usa el método de restauración para los virus también
         					antivirus[a].setColumna(colANTnew); 
                 			colANT = colANTnew; 
                             tablero.setCasilla(filaANT, colANT).setTipo("ANTIVIRUS");
@@ -301,8 +334,6 @@ public class MovimientoController extends JPanel implements ActionListener {
             		}
         		}
         	}
-        	
-        	
         	
         }
         
@@ -322,5 +353,16 @@ public class MovimientoController extends JPanel implements ActionListener {
 
     public void actionPerformed(ActionEvent e) {
         procesarMovimiento(e.getActionCommand());
+    }
+    public void verificarWin() {
+    	if(puerto.length == jugador.getPuertosTocados()){
+    		Controller.win();
+    	}
+    }
+    private void verificarTrampa(int fD, int cD) {
+        if (tablero.setCasilla(fD, cD).getTipo().equals("TRAMPA")) {
+            int sum = fD + cD;
+            Controller.MOV = Controller.MOV - sum;
+        }
     }
 }
