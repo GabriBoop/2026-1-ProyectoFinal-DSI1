@@ -16,7 +16,7 @@ public class Controller{
 	public static int COLUMNA = 5; //Columnas
 	public static int GRID_TOTAL = FILA*COLUMNA; //Filas * Columnas
 	public static int MOV = GRID_TOTAL; //Movimientos, igual q GridTotal
-	
+	public static int turno = 0; //turno
 	public static boolean INVERSO = false; //Check si el orden de los puertos es inverso o no
 	
 	public static int PUERTOS = 3; //Cantidad de puertos a tocar
@@ -32,7 +32,6 @@ public class Controller{
 	
 	private static Player jugador; //Creacion objetos
 	private static Tablero tablero;
-	private static Paquete paquete;
 	
 	private static Puertos[] puerto = new Puertos[PUERTOS];
 	private static AntiVirus[] antivirus = new AntiVirus[CANT_ANTIVIRUS];
@@ -40,6 +39,10 @@ public class Controller{
 	private static Scanner[] scanner = new Scanner[CANT_SCANNERS];
 	private static FireWalls[] firewall = new FireWalls[CANT_FIREWALLS];
 	
+	private static Game game;
+	
+	public static String musica = "/co/edu/unbosque/sound/SMOOTH_OPERATOR.wav";
+	public static String click = "/co/edu/unbosque/sound/Click.wav";
 	public Controller(){
 		
 		vnt = new MainFrame();
@@ -53,33 +56,30 @@ public class Controller{
 	}
 	
 	public static void mostrarTablero() {
-		ReproducirAudio.reproducir("/co/edu/unbosque/sound/SMOOTH_OPERATOR.wav");
+		ReproducirAudio.reproducir(musica);
 	    tablero = new Tablero();
 	    movimientosPanel = new MovimientosPanel();
 	    
 	    jugador = new Player(0,0);
-	    paquete = new Paquete(1,1);
+	    game = new Game(tablero, jugador, puerto, antivirus, nodo, scanner, firewall);
 	    
-	    tablero.setCasilla(0, 0).setTipo("PLAYER");
-	    tablero.setCasilla(1, 1).setTipo("PAQUETE");
 	    
-	    GeneradorTablero.run(tablero,jugador,paquete,puerto,PUERTOS, antivirus,nodo,firewall, CANT_ANTIVIRUS); //Genera Talbero
+	    GeneradorTablero.run(tablero,jugador,puerto,PUERTOS, antivirus,nodo,firewall,scanner, CANT_ANTIVIRUS); //Genera Talbero
 	    
-	    JPanel game = new JPanel(new BorderLayout()); //Nuevo Panel que contiene el Grid del juego y panel de movimiento.
+	    JPanel gamePanel = new JPanel(new BorderLayout()); //Nuevo Panel que contiene el Grid del juego y panel de movimiento.
 	    
-	    movimientoController = new MovimientoController(tablero,jugador,paquete,puerto,antivirus,nodo,scanner,firewall,verTablero,movimientosPanel);
+	    movimientoController = new MovimientoController(game, verTablero, movimientosPanel, jugador);
 	    movimientoController.input();
-	    
-	    movimientosPanel.getTxt().setText("MOVIMIENTOS: " + MOV + " / " + GRID_TOTAL); //Cosas del Panel Superior: Movimiento y Puertos
-	    movimientosPanel.getPrt().setText("PUERTOS: " + jugador.getPuertosTocados() + " / " + PUERTOS);
-	    
-	    game.add(movimientoController); 
-	    game.add(verTablero.getPanel(), BorderLayout.CENTER);
-	    game.add(movimientosPanel.getPanel(), BorderLayout.NORTH);
+	   
+	    gamePanel.add(movimientoController); 
+	    gamePanel.add(verTablero.getPanel(), BorderLayout.CENTER);
+
+	 // Como MovimientosPanel hereda directo de JPanel, lo agregas a pelo
+	    gamePanel.add(movimientosPanel, BorderLayout.EAST);
 
 	    
-	    verTablero.ver(tablero, puerto, antivirus);
-	    vnt.cambiarPanel(game);
+	    verTablero.ver(tablero, puerto, antivirus, scanner, jugador);
+	    vnt.cambiarPanel(gamePanel);
 	    SwingUtilities.invokeLater(() -> { //Funcionamiento de Input
 	        movimientoController.requestFocusInWindow();
 	    });

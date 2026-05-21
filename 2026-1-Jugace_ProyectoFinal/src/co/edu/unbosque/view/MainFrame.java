@@ -19,11 +19,12 @@ public class MainFrame extends JFrame{
 		setTitle("--GAME--");
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setLayout(new BorderLayout());
+		setBackground(new Color(15,0,50));
 		setLocationRelativeTo(null); // Asegura que siempre salga en el cemtro de la pantalla del computador
 		
 	}
 	
-	 public void cambiarPanel(JPanel panel) { //Cambio de pameñ (EJ: Config a Juego)
+	 public void cambiarPanel(JPanel panel) {//Cambio de pameñ (EJ: Config a Juego)
 	        getContentPane().removeAll();
 	        getContentPane().add(panel, BorderLayout.CENTER);
 	        revalidate(); //Revalida todo lo del Frame y no se gemerem errpres visuales

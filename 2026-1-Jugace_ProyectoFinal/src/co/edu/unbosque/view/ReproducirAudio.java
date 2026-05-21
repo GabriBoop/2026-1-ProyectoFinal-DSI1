@@ -29,6 +29,32 @@ public class ReproducirAudio {
             System.out.println("Error: " + e.getMessage());
         }
     }
+    public static void reproducirSFX(String nombreArchivo) {
+        try {
+            URL url = ReproducirAudio.class.getResource(nombreArchivo);
+            
+            if (url == null) {
+                System.out.println("No se encontró el archivo de efecto: " + nombreArchivo);
+                return;
+            }
+
+            AudioInputStream audioStream = AudioSystem.getAudioInputStream(url);
+            Clip clipEfecto = AudioSystem.getClip();
+            clipEfecto.open(audioStream);
+            clipEfecto.start();
+
+            // Súper importante: Liberar la memoria cuando el efecto termine de sonar
+            // Si no haces esto, el juego podría quedarse sin memoria tras lanzar muchos sonidos
+            clipEfecto.addLineListener(event -> {
+                if (event.getType() == LineEvent.Type.STOP) {
+                    clipEfecto.close();
+                }
+            });
+
+        } catch (Exception e) {
+            System.out.println("Error al reproducir efecto: " + e.getMessage());
+        }
+    }
 
     // NUEVO MÉTODO: Llama a esto desde el Controller para apagar la música por completo
     public static void detener() {

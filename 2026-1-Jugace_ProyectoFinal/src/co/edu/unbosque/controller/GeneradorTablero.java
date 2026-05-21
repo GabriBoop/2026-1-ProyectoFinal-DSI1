@@ -4,18 +4,15 @@ import co.edu.unbosque.model.*;
 
 public class GeneradorTablero {
 	
-	public static void run(Tablero tablero,Player jugador, Paquete paquete, Puertos[] puertos, int cantpuertos, AntiVirus[] antivirus,Nodo[] nodo,FireWalls[] firewall, int CANT_ANTIVIRUS) {
+	public static void run(Tablero tablero,Player jugador, Puertos[] puertos, int cantpuertos, AntiVirus[] antivirus,Nodo[] nodo,FireWalls[] firewall, Scanner[] scanner, int CANT_ANTIVIRUS) {
 		//Importa objetos Controller
 		jugador.setFila(0);
 		jugador.setColumna(0);
 		tablero.setCasilla(0, 0).setTipo("PLAYER");
 		
-		paquete.setFila(1);
-		paquete.setColumna(1);
-		tablero.setCasilla(1, 1).setTipo("PAQUETE");
-		
 		tablero.setCasilla(0, 1).setTipo("NO");
 		tablero.setCasilla(1, 0).setTipo("NO");
+		tablero.setCasilla(1, 1).setTipo("NO");
 		/* --PRT = PUERTO
 		 * Esto es medio pesado asi que atentos...
 		 */
@@ -33,7 +30,21 @@ public class GeneradorTablero {
 			puertos[p] = new Puertos(filaPrt, columnaPrt, p+1);
 			tablero.setCasilla(filaPrt, columnaPrt).setTipo("PUERTO");
 		}
-		// ANTIVIUS
+		// SCANNERS
+		for(int p = 0; p < Controller.CANT_SCANNERS; p++) {
+			
+			int filaSC = (int) (Math.random() * Controller.FILA); //Ramdon de Puertos
+			int columnaSC = (int) (Math.random() * Controller.COLUMNA);
+			
+			while(!tablero.setCasilla(filaSC, columnaSC).getTipo().equals("NA")) {
+				filaSC = (int) (Math.random() * Controller.FILA); //Ramdon de Puertos
+				columnaSC = (int) (Math.random() * Controller.COLUMNA);
+			}
+			
+			scanner[p] = new Scanner(filaSC, columnaSC);
+			tablero.setCasilla(filaSC, columnaSC).setTipo("SCANNER");
+		}
+		// ANTIVIRUS
 		for(int p = 0; p < Controller.CANT_ANTIVIRUS; p++) {
 			
 			int filaANT = (int) (Math.random() * Controller.FILA); //Ramdon de Puertos

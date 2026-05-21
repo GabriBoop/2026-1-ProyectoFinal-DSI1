@@ -5,7 +5,8 @@ public class Player {
 	private int fila;
 	private int columna;
 	private int puertosTocados = 0;
-	private Casilla[][] casilla; // ¡ESTO NO HA SIDO USADO!
+	private boolean sigilo = false;
+	private Casilla[][] casilla; 
 	
 	public Player(int fila, int columna) {
         this.fila = fila;
@@ -46,6 +47,15 @@ public class Player {
 	 public Casilla[][] getCasilla() {
 	    return casilla; 
 	 }
+
+	public boolean isSigilo() {
+		return sigilo;
+	}
+
+	public void setSigilo(boolean sigilo) {
+		this.sigilo = sigilo;
+	}
+	 
 	
 	
 

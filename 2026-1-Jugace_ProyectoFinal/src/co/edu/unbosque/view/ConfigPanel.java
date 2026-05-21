@@ -11,7 +11,7 @@ public class ConfigPanel {
 	private static JPanel confPanel = new JPanel(); //Panel y mucha cosa rara
 	
 	private JComboBox selectdiff = new JComboBox(); //Densidad de enemigos
-	private String[] diff ={"FACIL", "NORMAL", "MODERADO", "DIFICL", "MITU"}; //Lista de dificultad / Densidad de enemgios
+	private String[] diff ={"FACIL", "NORMAL", "MODERADO", "DIFICIL", "MITU"}; //Lista de dificultad / Densidad de enemgios
 	
 	private JSpinner spinFILAS = new JSpinner(); //Cokocar Filas
 	private JSpinner spinCOLUMNAS = new JSpinner(); //Cokocar Columnas
@@ -32,8 +32,7 @@ public class ConfigPanel {
 		spinPUERTOS = new JSpinner(new SpinnerNumberModel(3,2, 5, 1));
 		
 		ImageIcon imgB = new ImageIcon("src/co/edu/unbosque/images/botonok.png"); // Cambia por el nombre real de tu archivo
-	    botOK.setIcon(imgB);
-	    
+	    botOK.setIcon(imgB);  
 		botOK.setText(""); //Boton
 		botOK.setOpaque(false);
 		botOK.setBorderPainted(false);
