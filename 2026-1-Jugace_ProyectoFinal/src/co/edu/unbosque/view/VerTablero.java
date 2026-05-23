@@ -23,13 +23,12 @@ public class VerTablero {
 			paneles[i] = new JPanel();
 			paneles[i] = new JPanel(new BorderLayout());
 			paneles[i].setBorder(BorderFactory.createLineBorder(new Color(25,0,80), 1)); 
-			
 			gridPanel.add(paneles[i]);
 		}
 	}
 	
 	
-	public void ver(Tablero tablero, Puertos[] puerto, AntiVirus[] antivirus, Scanner[] scanner, Player jugador) {
+	public void ver(Tablero tablero ,Salida salida, Puertos[] puerto, AntiVirus[] antivirus, Scanner[] scanner, Player jugador) {
 		//Import de todo del Controller
 		gridPanel.removeAll(); //Quita lo anterior del Grid
 		
@@ -56,6 +55,21 @@ public class VerTablero {
 				    lbl_icon.setVerticalAlignment(SwingConstants.CENTER);
 					paneles[i].add(lbl_icon);
 					break;
+				case "PAQUETE":
+					icon = obtenerRENDER("src/co/edu/unbosque/images/paquete.png");
+					lbl_icon = new JLabel(icon);
+					lbl_icon.setHorizontalAlignment(SwingConstants.CENTER);
+				    lbl_icon.setVerticalAlignment(SwingConstants.CENTER);
+					paneles[i].add(lbl_icon);	
+					break;
+				case "SALIDA":
+					icon = obtenerRENDER("src/co/edu/unbosque/images/salida_close.png");
+					if(salida.isActivo())icon = obtenerRENDER("src/co/edu/unbosque/images/salida.png");
+					lbl_icon = new JLabel(icon);
+					lbl_icon.setHorizontalAlignment(SwingConstants.CENTER);
+				    lbl_icon.setVerticalAlignment(SwingConstants.CENTER);
+					paneles[i].add(lbl_icon);	
+					break;
 				case "PUERTO":
 				    for(int p = 0; p < Controller.PUERTOS; p++) { 
 				        if (f == puerto[p].getFila() && c == puerto[p].getColumna()) {  
@@ -65,7 +79,7 @@ public class VerTablero {
 				            num.setVerticalAlignment(SwingConstants.CENTER);
 				            num.setHorizontalTextPosition(SwingConstants.CENTER); //CENTRA EL TECTO
 				            num.setVerticalTextPosition(SwingConstants.CENTER);
-				            num.setFont(new Font("Berlin Sans FB Demi", Font.BOLD, 60)); 
+				            num.setFont(PonerFont.cargar(Font.BOLD, 50));
 				            
 				            if(puerto[p].isActivo() == false) { 
 				            	num.setIcon(obtenerRENDER("src/co/edu/unbosque/images/puerto_x.png"));
@@ -73,7 +87,7 @@ public class VerTablero {
 				            else { 
 				            	num.setIcon(obtenerRENDER("src/co/edu/unbosque/images/puerto.png"));
 				            	num.setText(String.valueOf(puerto[p].getNum()));
-				            	num.setForeground(Color.BLACK);
+				            	num.setForeground(Color.WHITE);
 				            }
 				            
 				            paneles[i].add(num, BorderLayout.CENTER);
@@ -91,6 +105,8 @@ public class VerTablero {
 				case "NODO":
 					icon = obtenerRENDER("src/co/edu/unbosque/images/nodo.png");
 					lbl_icon = new JLabel(icon);
+					lbl_icon.setHorizontalAlignment(SwingConstants.CENTER);
+				    lbl_icon.setVerticalAlignment(SwingConstants.CENTER);
 					paneles[i].add(lbl_icon);
 					break;
 				case "FIREWALL":
@@ -116,7 +132,31 @@ public class VerTablero {
 					break;
 				}
 				if (casilla.isVisitada()) { //RASTRO
-					paneles[i].setBackground(new Color(10, 0, 125)); 
+					paneles[i].setBackground(new Color(95, 102, 32)); 
+				}
+				
+				// RANGO DE PELIGRO SCANNER.
+				for (int a = 0; a < Controller.CANT_SCANNERS; a++) {
+				    int filaANT = scanner[a].getFila();
+				    int colANT = scanner[a].getColumna();
+				    
+				        
+				        if ((filaANT + 1 == f) && (colANT == c)) { // ABAJO
+				            paneles[i].setBackground(new Color(74, 0, 151));
+				            break;
+				        }
+				        else if ((filaANT - 1 == f) && (colANT == c)) { // ARRIBA
+				            paneles[i].setBackground(new Color(74, 0, 151));
+				            break;
+				        }
+				        else if ((filaANT == f) && (colANT + 1 == c)) { // DERECHA
+				            paneles[i].setBackground(new Color(74, 0, 151));
+				            break;
+				        }
+				        else if ((filaANT == f) && (colANT - 1 == c)) { // IZQUIERDA
+				            paneles[i].setBackground(new Color(74, 0, 151));
+				            break;
+				    }
 				}
 				// RANGO DE PELIGRO ANTIVIRUS.
 				for (int a = 0; a < Controller.CANT_ANTIVIRUS; a++) {
@@ -138,29 +178,6 @@ public class VerTablero {
 				        }
 				        else if ((filaANT == f) && (colANT - 1 == c)) { // IZQUIERDA DEL ANTIVIRUS
 				        	paneles[i].setBackground(new Color(133,0,60));
-				            break;
-				    }
-				}
-				// RANGO DE PELIGRO SCANNER.
-				for (int a = 0; a < Controller.CANT_SCANNERS; a++) {
-				    int filaANT = scanner[a].getFila();
-				    int colANT = scanner[a].getColumna();
-				    
-				        
-				        if ((filaANT + 1 == f) && (colANT == c)) { // ABAJO
-				            paneles[i].setBackground(new Color(74, 0, 151));
-				            break;
-				        }
-				        else if ((filaANT - 1 == f) && (colANT == c)) { // ARRIBA
-				            paneles[i].setBackground(new Color(74, 0, 151));
-				            break;
-				        }
-				        else if ((filaANT == f) && (colANT + 1 == c)) { // DERECHA
-				            paneles[i].setBackground(new Color(74, 0, 151));
-				            break;
-				        }
-				        else if ((filaANT == f) && (colANT - 1 == c)) { // IZQUIERDA
-				            paneles[i].setBackground(new Color(74, 0, 151));
 				            break;
 				    }
 				}

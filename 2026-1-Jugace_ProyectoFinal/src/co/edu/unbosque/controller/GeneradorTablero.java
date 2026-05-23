@@ -4,15 +4,27 @@ import co.edu.unbosque.model.*;
 
 public class GeneradorTablero {
 	
-	public static void run(Tablero tablero,Player jugador, Puertos[] puertos, int cantpuertos, AntiVirus[] antivirus,Nodo[] nodo,FireWalls[] firewall, Scanner[] scanner, int CANT_ANTIVIRUS) {
+	public static void run(Tablero tablero,Player jugador,Paquete paquete, Salida salida, Puertos[] puertos, int cantpuertos, AntiVirus[] antivirus,Nodo[] nodo,FireWalls[] firewall, Scanner[] scanner, int CANT_ANTIVIRUS) {
 		//Importa objetos Controller
+		VerTablero.getPanel().removeAll();
 		jugador.setFila(0);
 		jugador.setColumna(0);
 		tablero.setCasilla(0, 0).setTipo("PLAYER");
 		
-		tablero.setCasilla(0, 1).setTipo("NO");
+		paquete.setFila(1);
+		paquete.setColumna(1);
+		tablero.setCasilla(1, 1).setTipo("PAQUETE");
+		
+		salida.setFila(Controller.FILA-1);
+		salida.setColumna(Controller.COLUMNA-1);
+		tablero.setCasilla(Controller.FILA-1,Controller.COLUMNA-1).setTipo("SALIDA");
+		
+		tablero.setCasilla(1, 1).setTipo("PAQUETE");
+		tablero.setCasilla(0, 1).setTipo("NO"); //PARA QUE NO SE GENERE NADA ALREDEDOR DE LA SALIDA NI
 		tablero.setCasilla(1, 0).setTipo("NO");
-		tablero.setCasilla(1, 1).setTipo("NO");
+		tablero.setCasilla(Controller.FILA-1,Controller.COLUMNA-2).setTipo("NO");
+		tablero.setCasilla(Controller.FILA-2,Controller.COLUMNA-1).setTipo("NO");
+
 		/* --PRT = PUERTO
 		 * Esto es medio pesado asi que atentos...
 		 */
@@ -22,8 +34,10 @@ public class GeneradorTablero {
 			int filaPrt = (int) (Math.random() * Controller.FILA); //Ramdon de Puertos
 			int columnaPrt = (int) (Math.random() * Controller.COLUMNA);
 			
-			while(!tablero.setCasilla(filaPrt, columnaPrt).getTipo().equals("NA")) {
-				filaPrt = (int) (Math.random() * Controller.FILA); //Ramdon de Puertos
+			while(filaPrt == 0 || filaPrt == Controller.FILA - 1 || //Hace que no puedan salir en los bordes del mapa8888888888888
+				  columnaPrt == 0 || columnaPrt == Controller.COLUMNA - 1 ||
+				  !tablero.setCasilla(filaPrt, columnaPrt).getTipo().equals("NA")) { //Verifica que este vacia
+				filaPrt = (int) (Math.random() * Controller.FILA); //Random de Puertos
 				columnaPrt = (int) (Math.random() * Controller.COLUMNA);
 			}
 			
@@ -39,6 +53,7 @@ public class GeneradorTablero {
 			while(!tablero.setCasilla(filaSC, columnaSC).getTipo().equals("NA")) {
 				filaSC = (int) (Math.random() * Controller.FILA); //Ramdon de Puertos
 				columnaSC = (int) (Math.random() * Controller.COLUMNA);
+				
 			}
 			
 			scanner[p] = new Scanner(filaSC, columnaSC);
@@ -61,7 +76,7 @@ public class GeneradorTablero {
 		
 		// NODOS
 		for(int p = 0; p < Controller.CANT_NODOS; p++) {
-					
+			
 			int filaNOD = (int) (Math.random() * Controller.FILA); //Ramdon de Puertos
 			int columnaNOD = (int) (Math.random() * Controller.COLUMNA);
 					
@@ -93,16 +108,21 @@ public class GeneradorTablero {
 	        int fa = firewall[a].getFila();
 	        int ca = firewall[a].getColumna();
 	        
-	        for (int c = 0; c < firewall.length; c++) {
+	        for (int c = 0; c < firewall.length; c++) { // DETECTA FIREWALLS 
 	            if (a == c || firewall[c] == null) continue;
 	            int fa2 = firewall[c].getFila();
 	            int ca2 = firewall[c].getColumna();
 
-	            if (ca == ca2 && Math.abs(fa - fa2) == 2) {
-	                int fMedio = (fa + fa2) / 2;
-	                
-	                if (tablero.setCasilla(fMedio, ca).getTipo().equals("NA")) {
-	                    tablero.setCasilla(fMedio, ca).setTipo("TRAMPA");
+	            if (ca == ca2 && ((fa - fa2) == 2 || (fa - fa2) == -2)) { // GENERA TRAMPAS VERTICALES
+	                int f_MEDIO = (fa + fa2) / 2;
+	                if (tablero.setCasilla(f_MEDIO, ca).getTipo().equals("NA")) {
+	                    tablero.setCasilla(f_MEDIO, ca).setTipo("TRAMPA");
+	                }
+	            }
+	            if (fa == fa2 && ((ca - ca2) == 2 || (ca - ca2) == -2)) { // GENERA TRAMPAS HORIZONTALES
+	                int c_MEDIO = (ca + ca2) / 2;
+	                if (tablero.setCasilla(fa, c_MEDIO).getTipo().equals("NA")) {
+	                    tablero.setCasilla(fa, c_MEDIO).setTipo("TRAMPA");
 	                }
 	            }
 	        }
@@ -110,6 +130,9 @@ public class GeneradorTablero {
 
 		tablero.setCasilla(0, 1).setTipo("NA");
 		tablero.setCasilla(1, 0).setTipo("NA");
+		tablero.setCasilla(Controller.FILA-1,Controller.COLUMNA-2).setTipo("NA");
+		tablero.setCasilla(Controller.FILA-2,Controller.COLUMNA-1).setTipo("NA");
+
 	}
 
 }

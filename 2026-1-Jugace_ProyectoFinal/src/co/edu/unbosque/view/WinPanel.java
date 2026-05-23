@@ -2,6 +2,7 @@ package co.edu.unbosque.view;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Font;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -16,7 +17,8 @@ public class WinPanel {
 		winPanel.setBackground(Color.GREEN);
 		winPanel.setLayout(new BorderLayout());
 		
-		JLabel txt = new JLabel("GANASTE GANADOR!!", SwingConstants.CENTER); //Creacion de Label donde el texto siempre salga en el centro
+		JLabel txt = new JLabel("GANASTE GANADOR!!", SwingConstants.CENTER);
+		txt.setFont(PonerFont.cargar(Font.BOLD, 50));//Creacion de Label donde el texto siempre salga en el centro
 		winPanel.add(btnRestart, BorderLayout.SOUTH);
 		winPanel.add(txt, BorderLayout.CENTER);
 	}

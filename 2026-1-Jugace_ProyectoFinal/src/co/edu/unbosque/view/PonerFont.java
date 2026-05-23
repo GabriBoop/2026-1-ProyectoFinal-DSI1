@@ -11,12 +11,10 @@ public class PonerFont {
 	/**
 	 * Carga la fuente VCR OSD Mono con un estilo y tamaño específico
 	 */
-	public static Font cargar(int estilo, int size) {
-		
+	public static Font cargar(int estilo, int size) { //Mayor parte hecha con IA, ni idea como hacer esto
 		
 		if (font == null) {
 			try {
-				// Buscamos el archivo de forma segura dentro del proyecto (Sirve para el .JAR final)
 				InputStream is = PonerFont.class.getResourceAsStream("/co/edu/unbosque/fonts/VCR_OSD_MONO.ttf");
 				
 				if (is != null) {
@@ -29,8 +27,6 @@ public class PonerFont {
 				e.printStackTrace();
 			}
 		}
-		
-		// Retorna la fuente clonada con las especificaciones que le pidas
 		return font.deriveFont(estilo, size);
 	}
 

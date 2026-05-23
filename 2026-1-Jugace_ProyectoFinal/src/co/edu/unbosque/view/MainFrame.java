@@ -16,12 +16,12 @@ public class MainFrame extends JFrame{
 	public MainFrame() {
 	
 		setBounds(0, 0, ANCHO, ALTO);
-		setTitle("--GAME--");
+		setTitle("Cyber-Infiltrator: Menu");
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setLayout(new BorderLayout());
 		setBackground(new Color(15,0,50));
 		setLocationRelativeTo(null); // Asegura que siempre salga en el cemtro de la pantalla del computador
-		
+		setExtendedState(JFrame.MAXIMIZED_BOTH);
 	}
 	
 	 public void cambiarPanel(JPanel panel) {//Cambio de pameñ (EJ: Config a Juego)

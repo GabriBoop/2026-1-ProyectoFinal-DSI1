@@ -4,7 +4,7 @@ import co.edu.unbosque.controller.*;
 import co.edu.unbosque.model.*;
 
 public class Tablero {
-	// ¡ESTO NO HA SIDO USADO!
+
 	 private int filas;
 	 private int columnas;
 	 private Player jugador;

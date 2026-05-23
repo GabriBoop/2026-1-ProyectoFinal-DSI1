@@ -56,7 +56,7 @@ public class ReproducirAudio {
         }
     }
 
-    // NUEVO MÉTODO: Llama a esto desde el Controller para apagar la música por completo
+  
     public static void detener() {
         try {
             if (clip != null && clip.isRunning()) {

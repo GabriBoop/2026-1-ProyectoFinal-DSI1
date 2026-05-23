@@ -29,9 +29,12 @@ public class Controller{
 	private static VerTablero verTablero;
 	private static MovimientosPanel movimientosPanel;
 	private static MovimientoController movimientoController;
-	
-	private static Player jugador; //Creacion objetos
+	//Creacion objetos
 	private static Tablero tablero;
+	private static Player jugador; 
+	private static Paquete paquete;
+	private static Salida salida;							
+	
 	
 	private static Puertos[] puerto = new Puertos[PUERTOS];
 	private static AntiVirus[] antivirus = new AntiVirus[CANT_ANTIVIRUS];
@@ -41,7 +44,7 @@ public class Controller{
 	
 	private static Game game;
 	
-	public static String musica = "/co/edu/unbosque/sound/SMOOTH_OPERATOR.wav";
+	public static String musica = "/co/edu/unbosque/sound/sneakman.wav";
 	public static String click = "/co/edu/unbosque/sound/Click.wav";
 	public Controller(){
 		
@@ -52,7 +55,7 @@ public class Controller{
 	}
 	
 	public static void run() {
-		ConfigController.run();
+		MenuController.run();
 	}
 	
 	public static void mostrarTablero() {
@@ -61,10 +64,12 @@ public class Controller{
 	    movimientosPanel = new MovimientosPanel();
 	    
 	    jugador = new Player(0,0);
-	    game = new Game(tablero, jugador, puerto, antivirus, nodo, scanner, firewall);
+	    paquete = new Paquete(1,1);
+	    salida = new Salida(FILA-1,COLUMNA-1);
+	    game = new Game(tablero, jugador, paquete, salida, puerto, antivirus, nodo, scanner, firewall);
 	    
 	    
-	    GeneradorTablero.run(tablero,jugador,puerto,PUERTOS, antivirus,nodo,firewall,scanner, CANT_ANTIVIRUS); //Genera Talbero
+	    GeneradorTablero.run(tablero,jugador,paquete,salida,puerto,PUERTOS, antivirus,nodo,firewall,scanner, CANT_ANTIVIRUS); //Genera Talbero
 	    
 	    JPanel gamePanel = new JPanel(new BorderLayout()); //Nuevo Panel que contiene el Grid del juego y panel de movimiento.
 	    
@@ -78,11 +83,8 @@ public class Controller{
 	    gamePanel.add(movimientosPanel, BorderLayout.EAST);
 
 	    
-	    verTablero.ver(tablero, puerto, antivirus, scanner, jugador);
+	    verTablero.ver(tablero,salida, puerto, antivirus, scanner, jugador);
 	    vnt.cambiarPanel(gamePanel);
-	    SwingUtilities.invokeLater(() -> { //Funcionamiento de Input
-	        movimientoController.requestFocusInWindow();
-	    });
 	}
 	
 	public static void actualizarTablero() { //Actualizar tablero para Config
@@ -99,11 +101,14 @@ public class Controller{
 	public static void gameOver() { //Panel de GameOver
 		GameOver gameover = new GameOver(); 
 		ReproducirAudio.detener();
+		ReproducirAudio.reproducir("/co/edu/unbosque/sound/gameover.wav"); 
+		INVERSO = false;
 		vnt.cambiarPanel(gameover.getPanel());
 		gameover.getBtnRestart().addActionListener(new ActionListener() {
 	        
 	        public void actionPerformed(ActionEvent e) {
-	            ConfigController.run();
+	        	ReproducirAudio.detener();
+	        	MenuController.run();
 	        }
 	    });
 	    
@@ -111,11 +116,14 @@ public class Controller{
 	public static void win() { //Panel de GameOver
 		WinPanel win = new WinPanel(); 
 		ReproducirAudio.detener();
+		ReproducirAudio.reproducir("/co/edu/unbosque/sound/win.wav"); 
+		INVERSO = false;
 		vnt.cambiarPanel(win.getPanel());
 		win.getBtnRestart().addActionListener(new ActionListener() {
 	        
 	        public void actionPerformed(ActionEvent e) {
-	            ConfigController.run();
+	        	ReproducirAudio.detener();
+	        	MenuController.run();
 	        }
 	    });
 	    
