@@ -10,6 +10,14 @@ import javax.swing.SwingUtilities;
 
 import co.edu.unbosque.model.*;
 
+/**
+ * Clase incializadora del Menu, Paneles e Importacion de objetos a otros metodos o clases,
+ * <strong>el cerebro principal de la aplicacion<strong>
+ * @author Gabriel Alejandro Morales Diaz
+ * @author Cesar David Reyes Ruiz
+ * @author Juan David Barrera Lopez
+ */
+
 public class Controller{
 	
 	public static int FILA = 5; //Filas
@@ -46,17 +54,26 @@ public class Controller{
 	
 	public static String musica = "/co/edu/unbosque/sound/sneakman.wav";
 	public static String click = "/co/edu/unbosque/sound/Click.wav";
+	
+	
 	public Controller(){
-		
 		vnt = new MainFrame();
 		verTablero = new VerTablero();
-		vnt.setVisible(true);
-		
+		vnt.setVisible(true);	
 	}
 	
+	/**
+	 * Inicializa el Programa
+	 */
+
 	public static void run() {
 		MenuController.run();
 	}
+	
+	/**
+	 * Al llamar este Metodo, se prepararan los objetos (Como el jugador, paquete y enemigos varios)
+	 * y se importaran a otros Metodos para la inicializacion de la Partida.
+	 */
 	
 	public static void mostrarTablero() {
 		ReproducirAudio.reproducir(musica);
@@ -68,14 +85,12 @@ public class Controller{
 	    salida = new Salida(FILA-1,COLUMNA-1);
 	    game = new Game(tablero, jugador, paquete, salida, puerto, antivirus, nodo, scanner, firewall);
 	    
-	    
 	    GeneradorTablero.run(tablero,jugador,paquete,salida,puerto,PUERTOS, antivirus,nodo,firewall,scanner, CANT_ANTIVIRUS); //Genera Talbero
 	    
 	    JPanel gamePanel = new JPanel(new BorderLayout()); //Nuevo Panel que contiene el Grid del juego y panel de movimiento.
 	    
 	    movimientoController = new MovimientoController(game, verTablero, movimientosPanel, jugador);
 	    movimientoController.input();
-	   
 	    gamePanel.add(movimientoController); 
 	    gamePanel.add(verTablero.getPanel(), BorderLayout.CENTER);
 
@@ -87,6 +102,11 @@ public class Controller{
 	    vnt.cambiarPanel(gamePanel);
 	}
 	
+	/**
+	 * <strong>Actualizacion del Tablero<strong>, al llamarlo, vuelve a redifinir variables por si se le han
+	 * hecho cambios, principalementes a los <strong>ARRAYS<strong>,
+	 */
+	
 	public static void actualizarTablero() { //Actualizar tablero para Config
 		GRID_TOTAL = FILA*COLUMNA;
 		MOV = GRID_TOTAL;
@@ -97,6 +117,11 @@ public class Controller{
 		firewall = new FireWalls[CANT_FIREWALLS];
 	    verTablero = new VerTablero(); 
 	}
+	
+	/**
+	 * Se llama cuando se pierde en una partida, hace que <b>>se cambie por completo el panel actual de juego</b>
+	 * y pase a ser el respectivo de muerte, tambien <b>cambia la musica actualiza la variable de orden INVERSO de PUERTOS</b>
+	 */
 	
 	public static void gameOver() { //Panel de GameOver
 		GameOver gameover = new GameOver(); 
@@ -113,7 +138,12 @@ public class Controller{
 	    });
 	    
 	}
-	public static void win() { //Panel de GameOver
+	/**
+	 * Se llama cuando se gana en una partida, hace que <b>se cambie por completo el panel actual de juego</b>
+	 * y pase a ser el respectivo de ganar, tambien  <b>cambia la musica actualiza la variable de orden INVERSO de PUERTOS</b>
+	 */
+	
+	public static void win() { 
 		WinPanel win = new WinPanel(); 
 		ReproducirAudio.detener();
 		ReproducirAudio.reproducir("/co/edu/unbosque/sound/win.wav"); 

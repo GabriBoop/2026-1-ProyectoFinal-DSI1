@@ -6,12 +6,26 @@ import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
+/**
+ * Clase controladora de TODAS las acciones del menu, desde detectar botones, ver informacion del juego, inicializar juego predeterminado e
+ * inicializar partidas con configuracion personalizada
+ * @author Gabriel Alejandro Morales Diaz
+ * @author Cesar David Reyes Ruiz
+ * @author Juan David Barrera Lopez
+ */
+
+
 public class MenuController implements ActionListener {
 
     private static ConfigPanel configPanel; //Paneles
     private static MenuPanel menuPanel;
     private static TutorialPanel tutorialpanel;
     
+    /**
+     *  Inicializan los procesos del Menu, otorga titulo, musica, inicializa paneles que se van a usar en este y prepara
+     *  el uso de los botones para redirigir a los paneles.
+     *  <p> Al final, cambia el panel principal que es tenga actualmente, hacia el panel del menu.
+     */
     public static void run() {
         Controller.vnt.setTitle("Cyber-Infiltrator: Menu"); //Se prepara todo
         ReproducirAudio.reproducir("/co/edu/unbosque/sound/menu.wav");
@@ -20,10 +34,19 @@ public class MenuController implements ActionListener {
         tutorialpanel = new TutorialPanel();
         MenuController lector = new MenuController(); //Se autollama para Inputs
         lector.darLectores();
-        
         Controller.vnt.cambiarPanel(menuPanel.getPanel());
     }
-    
+    /**
+     *  Da los ActionListener y ActionComand a los botones de TODOS los paneles que
+     *  se vayan a usar.
+     *<p>Se llama al ActionPerformed.
+     *<p>Da Logica a cada boton mediante ActionEvent.
+     *<p>Cada boton tiene funcion distinta y algunos comparten el mismo PANEL, aqui
+     *se pueden configurar los valores del juego como cantidad de enemigos, filas, columnas, orden y cantidad de puertos y mas.
+     *<p>Seccion fundamental para el funcionamiento del juego, se reproduce un sonido cada vez que se presione
+     *alguno de los botones.
+     *
+     */
     public void darLectores() {
         menuPanel.getBtnPredeterminado().addActionListener(this);
         menuPanel.getBtnPredeterminado().setActionCommand("Predeterminado");
@@ -59,7 +82,8 @@ public class MenuController implements ActionListener {
         tutorialpanel.getVerMas().setActionCommand("MAS");
         tutorialpanel.getBtnVolver().addActionListener(this);
         tutorialpanel.getBtnVolver().setActionCommand("VOLVER_T");
-    }       
+    }   
+    
     public void actionPerformed(ActionEvent e) {
     	ReproducirAudio.reproducirSFX(Controller.click);
         switch (e.getActionCommand()) {
@@ -111,6 +135,7 @@ public class MenuController implements ActionListener {
                     System.exit(0);
                 }
                 break;
+                
                 // CONFIGURACION
             case "BotOK":
                 Controller.FILA = (int) configPanel.getSpinFILAS().getValue();
@@ -119,7 +144,7 @@ public class MenuController implements ActionListener {
                 Controller.PUERTOS = (int) configPanel.getSpinPUERTOS().getValue();
                 int s = configPanel.getSelectdiff().getSelectedIndex();
                 
-                if(s >= 3 && Controller.GRID_TOTAL < 40) {
+                if(s >= 3 && Controller.GRID_TOTAL < 40) { //Anuncio de Nivel prosiblemente imposible al hacer una Matriz tan pequeña con tantos enemigos
                 	ImageIcon icon_a = new ImageIcon("src/co/edu/unbosque/images/icon_playersigilo.png");
                 	int res = JOptionPane.showConfirmDialog(null, "<html>Tu dificultad es muy alta para el mapeo tan pequeño que pusiste...<br>"
                 			+ "<html><center>¿Quieres volver a poner un Mapeo mas grande?<center><br>"
@@ -177,7 +202,6 @@ public class MenuController implements ActionListener {
                 
             // TUTORIAL / INFORMACION
             // Escritura: <html> <br> lineas <center> centrado
-             //"<html><center><center><br>"
             case "PLAYER":
                 tutorialpanel.setNombre("JUGADOR");
                 tutorialpanel.setIcono("src/co/edu/unbosque/images/player_tuto.png");

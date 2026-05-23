@@ -33,10 +33,10 @@ public class ConfigPanel {
 		selectdiff = new JComboBox(diff);  //Creacion de Densidad de emeg
 		selectdiff.setFont(PonerFont.cargar(Font.BOLD, 20));
 		
-		spinFILAS = new JSpinner(new SpinnerNumberModel(5,5, 20, 1));   //PREDETERMINADO-MIN-MAX-INCREMENTO
+		spinFILAS = new JSpinner(new SpinnerNumberModel(10,5, 20, 1));   //PREDETERMINADO-MIN-MAX-INCREMENTO
 		spinFILAS.setFont(PonerFont.cargar(Font.BOLD, 20));
 		
-		spinCOLUMNAS = new JSpinner(new SpinnerNumberModel(10,5, 20, 1)); //Spin de las Filas, Columnas y puertos...
+		spinCOLUMNAS = new JSpinner(new SpinnerNumberModel(15,5, 20, 1)); //Spin de las Filas, Columnas y puertos...
 		spinCOLUMNAS.setFont(PonerFont.cargar(Font.BOLD, 20));
 		
 		spinPUERTOS = new JSpinner(new SpinnerNumberModel(3,2, 5, 1));

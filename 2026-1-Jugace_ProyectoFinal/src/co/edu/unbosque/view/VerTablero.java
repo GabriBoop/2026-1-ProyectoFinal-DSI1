@@ -1,9 +1,13 @@
 package co.edu.unbosque.view;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.awt.RenderingHints;
 
 import javax.swing.*;
 import co.edu.unbosque.controller.Controller;
@@ -48,7 +52,7 @@ public class VerTablero {
 				switch(tp) {
 				
 				case "PLAYER":
-					ImageIcon icon = obtenerRENDER("src/co/edu/unbosque/images/player.png");
+					ImageIcon icon = obtenerRENDER_GIF("src/co/edu/unbosque/images/player_idle.gif");
 					if(jugador.isSigilo()) icon = obtenerRENDER("src/co/edu/unbosque/images/player_s.png");
 					JLabel lbl_icon = new JLabel(icon);
 					lbl_icon.setHorizontalAlignment(SwingConstants.CENTER);
@@ -56,7 +60,7 @@ public class VerTablero {
 					paneles[i].add(lbl_icon);
 					break;
 				case "PAQUETE":
-					icon = obtenerRENDER("src/co/edu/unbosque/images/paquete.png");
+					icon = obtenerRENDER_GIF("src/co/edu/unbosque/images/paquete_idle.gif");
 					lbl_icon = new JLabel(icon);
 					lbl_icon.setHorizontalAlignment(SwingConstants.CENTER);
 				    lbl_icon.setVerticalAlignment(SwingConstants.CENTER);
@@ -96,7 +100,7 @@ public class VerTablero {
 				    }
 				    break;
 				case "ANTIVIRUS":
-					icon = obtenerRENDER("src/co/edu/unbosque/images/virus.png");
+					icon = obtenerRENDER_GIF("src/co/edu/unbosque/images/antivirus_idle.gif");
 					lbl_icon = new JLabel(icon);
 					lbl_icon.setHorizontalAlignment(SwingConstants.CENTER);
 				    lbl_icon.setVerticalAlignment(SwingConstants.CENTER);
@@ -117,14 +121,14 @@ public class VerTablero {
 					paneles[i].add(lbl_icon);
 					break;
 				case "TRAMPA":
-					icon = obtenerRENDER("src/co/edu/unbosque/images/wall_path.png");
+					icon = obtenerRENDER_GIF("src/co/edu/unbosque/images/trampa.gif");
 					lbl_icon = new JLabel(icon);
 					lbl_icon.setHorizontalAlignment(SwingConstants.CENTER);
 				    lbl_icon.setVerticalAlignment(SwingConstants.CENTER);
 					paneles[i].add(lbl_icon);
 					break;
 				case "SCANNER":
-					icon = obtenerRENDER("src/co/edu/unbosque/images/scanner.png");
+					icon = obtenerRENDER_GIF("src/co/edu/unbosque/images/scanner_idle.gif");
 					lbl_icon = new JLabel(icon);
 					lbl_icon.setHorizontalAlignment(SwingConstants.CENTER);
 				    lbl_icon.setVerticalAlignment(SwingConstants.CENTER);
@@ -208,6 +212,43 @@ public class VerTablero {
 	    Image imgEscalada = imgOriginal.getScaledInstance(dimensionFinal, dimensionFinal, Image.SCALE_SMOOTH);
 	    
 	    return new ImageIcon(imgEscalada);
+	}
+	
+	public ImageIcon obtenerRENDER_GIF(String ruta) {
+	    ImageIcon original = new ImageIcon(ruta);
+	    
+	    int anchoCasilla = gridPanel.getWidth() / Controller.COLUMNA;
+	    int altoCasilla = gridPanel.getHeight() / Controller.FILA;
+	    
+	    if (anchoCasilla <= 0) anchoCasilla = 90;
+	    if (altoCasilla <= 0) altoCasilla = 90;
+	    
+	    int tamanoIcono = Math.min(anchoCasilla, altoCasilla);
+	    
+	    int dimensionFinal = tamanoIcono - 18;
+	    if (dimensionFinal < 5) dimensionFinal = 5;
+	    
+	    final int size = dimensionFinal;
+	    
+	    // Creamos un ImageIcon al vuelo que sobrescribe sus instrucciones de dibujado.
+	    // En lugar de escalar la imagen y romperla, la dibuja escalada en tiempo real.
+	    return new ImageIcon(original.getImage()) {
+	        @Override
+	        public void paintIcon(Component c, Graphics g, int x, int y) {
+	            // El parámetro 'c' actúa como el ImageObserver, lo que mantiene el loop de la animación
+	            g.drawImage(getImage(), x, y, size, size, c);
+	        }
+	        
+	        @Override
+	        public int getIconWidth() {
+	            return size;
+	        }
+	        
+	        @Override
+	        public int getIconHeight() {
+	            return size;
+	        }
+	    };
 	}
 	
 	public static JPanel getPanel() {

@@ -2,7 +2,33 @@ package co.edu.unbosque.controller;
 import co.edu.unbosque.view.*;
 import co.edu.unbosque.model.*;
 
+/**
+ * Clase la cual genera el tablero / mapa de la partida mediante los objetos importados por otras clases o metodos,
+ * cuenta con un sistema casi completamente aleatorio para todos los objetos
+ * (a excepcion del jugador, paquete y la salida, ellos siempre apareceran en el mismo lugar)
+ * @author Gabriel Alejandro Morales Diaz
+ * @author Cesar David Reyes Ruiz
+ * @author Juan David Barrera Lopez
+ */
+
 public class GeneradorTablero {
+	
+	/**
+	 * Generador de Tablero / mapa, corre ya todo el proceso de generacion semi aleatoria de puertos, enemigos y nodos.
+	 * 
+	 * @param tablero <p>Importacion del objeto de Tablero.java, con todas sus casillas
+	 * @param jugador <p>Importacion del objeto de PLayer.java, debe tener una ubicacion puesta desde antes (EJ: PLAYER P = NEW PLAYER(0,0)) para inicializarla bien en este metodo
+	 * @param paquete <p>Importacion del objeto de Paquete.java, debe tener una ubicacion puesta desde antes (EJ: PAQYETE PQ = NEW PAQUETE(1,1)) para inicializarla bien en este metodo
+	 * @param salida <p>Importacion del objeto de Salida.java, debe tener una ubicacion puesta desde antes (EJ: SALIDA S = NEW SALIDA(2,2)) para inicializarla bien en este metodo
+	 * @param puertos <p>Importacion del objeto de Puertos.java como ARRAY, cuenta con generacion aleatoria con limitaciones
+	 * @param cantpuertos <p>Importacion de la variable de cantidad de PUERTOS
+	 * @param antivirus <p>Importacion del objeto de AntiVirus.java como ARRAY, cuenta con generacion aleatoria con limitaciones
+	 * @param nodo <p>Importacion del objeto de Nodo.java como ARRAY, cuenta con generacion aleatoria con limitaciones
+	 * @param firewall <p>Importacion del objeto de FireWalls.java como ARRAY, cuenta con generacion aleatoria con limitaciones, tambien
+	 * aca se generan las TRAMPAS mediante calculos de la distancia entre FIREWALLS verticales y horizontales.
+	 * @param scanner <p>Importacion del objeto de Scanner.java como ARRAY, cuenta con generacion aleatoria con limitaciones
+	 * @param CANT_ANTIVIRUS <p>Importacion de la variable de cantidad de ANTIVIRUS
+	 */
 	
 	public static void run(Tablero tablero,Player jugador,Paquete paquete, Salida salida, Puertos[] puertos, int cantpuertos, AntiVirus[] antivirus,Nodo[] nodo,FireWalls[] firewall, Scanner[] scanner, int CANT_ANTIVIRUS) {
 		//Importa objetos Controller
@@ -25,9 +51,6 @@ public class GeneradorTablero {
 		tablero.setCasilla(Controller.FILA-1,Controller.COLUMNA-2).setTipo("NO");
 		tablero.setCasilla(Controller.FILA-2,Controller.COLUMNA-1).setTipo("NO");
 
-		/* --PRT = PUERTO
-		 * Esto es medio pesado asi que atentos...
-		 */
 		//PUERTOS
 		for(int p = 0; p < Controller.PUERTOS; p++) {
 			

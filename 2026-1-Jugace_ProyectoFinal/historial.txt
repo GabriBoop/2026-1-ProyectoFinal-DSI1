@@ -1,0 +1,53 @@
+--------------------------------------------
+       CYBER INFILTRATOR - HISTORIAL
+--------------------------------------------
+Fecha y hora : 23/05/2026 16:28:43
+Resultado    : DERROTA (Capturado por Antivirus)
+Turnos       : 31
+Mov restantes: 69
+Puertos      : 0 / 5
+--------------------------------------------
+           SECUENCIA DE MOVIMIENTOS
+--------------------------------------------
+    1. Turno 1 | ABAJO  →  pos(1,0)  | MOV restantes: 95  | Puertos: 0/5
+    2. Turno 2 | DERECHA  →  pos(1,1)  | MOV restantes: 94  | Puertos: 0/5
+    3. Turno 3 | ARRIBA  →  pos(0,1)  | MOV restantes: 93  | Puertos: 0/5
+    4. Turno 4 | DERECHA  →  pos(0,2)  | MOV restantes: 92  | Puertos: 0/5
+    5. Turno 5 | ABAJO  →  pos(1,2)  | MOV restantes: 91  | Puertos: 0/5
+    6.           └─ SCANNER detectado  -MOV: -4
+    7. Turno 6 | IZQUIERDA  →  pos(1,1)  | MOV restantes: 86  | Puertos: 0/5
+    8. Turno 7 | ABAJO  →  pos(2,1)  | MOV restantes: 85  | Puertos: 0/5
+    9. Turno 8 | ABAJO  →  pos(3,1)  | MOV restantes: 84  | Puertos: 0/5
+   10. Turno 9 | ABAJO  →  pos(4,1)  | MOV restantes: 83  | Puertos: 0/5
+   11.           └─ NODO recogido en (4,1)  +MOV: +9
+   12. Turno 10 | ARRIBA  →  pos(3,1)  | MOV restantes: 91  | Puertos: 0/5
+   13. Turno 11 | ARRIBA  →  pos(2,1)  | MOV restantes: 90  | Puertos: 0/5
+   14. Turno 12 | DERECHA  →  pos(2,2)  | MOV restantes: 89  | Puertos: 0/5
+   15. Turno 13 | ARRIBA  →  pos(1,2)  | MOV restantes: 88  | Puertos: 0/5
+   16. Turno 14 | DERECHA  →  pos(1,3)  | MOV restantes: 87  | Puertos: 0/5
+   17. Turno 15 | ABAJO  →  pos(2,3)  | MOV restantes: 86  | Puertos: 0/5
+   18.           └─ SCANNER detectado  -MOV: -4
+   19. Turno 16 | ABAJO  →  pos(3,3)  | MOV restantes: 81  | Puertos: 0/5
+   20. Turno 17 | IZQUIERDA  →  pos(3,2)  | MOV restantes: 80  | Puertos: 0/5
+   21. Turno 18 | ABAJO  →  pos(4,2)  | MOV restantes: 79  | Puertos: 0/5
+   22. Turno 19 | DERECHA  →  pos(4,3)  | MOV restantes: 78  | Puertos: 0/5
+   23.           └─ SCANNER detectado  -MOV: -3
+   24. Turno 20 | DERECHA  →  pos(4,4)  | MOV restantes: 74  | Puertos: 0/5
+   25.           └─ SCANNER detectado  -MOV: -3
+   26. Turno 21 | DERECHA  →  pos(4,5)  | MOV restantes: 70  | Puertos: 0/5
+   27. Turno 22 | DERECHA  →  pos(4,6)  | MOV restantes: 69  | Puertos: 0/5
+   28. Turno 23 | DERECHA  →  pos(4,7)  | MOV restantes: 68  | Puertos: 0/5
+   29. Turno 24 | ARRIBA  →  pos(3,7)  | MOV restantes: 67  | Puertos: 0/5
+   30. Turno 25 | DERECHA  →  pos(3,8)  | MOV restantes: 66  | Puertos: 0/5
+   31. Turno 26 | ABAJO  →  pos(4,8)  | MOV restantes: 65  | Puertos: 0/5
+   32. Turno 27 | ABAJO  →  pos(5,8)  | MOV restantes: 64  | Puertos: 0/5
+   33.           └─ NODO recogido en (5,8)  +MOV: +9
+   34. Turno 28 | IZQUIERDA  →  pos(5,7)  | MOV restantes: 72  | Puertos: 0/5
+   35. Turno 29 | ABAJO  →  pos(6,7)  | MOV restantes: 71  | Puertos: 0/5
+   36. Turno 30 | ARRIBA  →  pos(5,7)  | MOV restantes: 70  | Puertos: 0/5
+   37. Turno 31 | DERECHA  →  pos(5,8)  | MOV restantes: 69  | Puertos: 0/5
+   38. Turno 32 | ABAJO  →  pos(6,8)  | MOV restantes: 68  | Puertos: 0/5
+   39.           - ANTIVIRUS: GAME OVER
+--------------------------------------------
+Total de movimientos ejecutados: 39
+--------------------------------------------
