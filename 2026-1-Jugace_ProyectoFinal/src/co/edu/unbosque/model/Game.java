@@ -27,8 +27,7 @@ public class Game {
     private Tablero tablero;
 
     private boolean sigiloUSADO = false;
-    private int cnt = 0;
-    
+    private int cnt = 0; 
     // Lista del historial de movimientos integrada
     private List<String> historialMovimientos = new ArrayList<>();
     
@@ -107,6 +106,7 @@ public class Game {
     	
         int filaPL = jugador.getFila(); 
         int colPL = jugador.getColumna();
+        
         int filaPL_temp = filaPL; 
         int colPL_temp = colPL;
         
@@ -131,7 +131,8 @@ public class Game {
             	new_ColPL >= 0 && new_ColPL < Controller.COLUMNA && 
                 !tablero.setCasilla(new_FilaPL, new_ColPL).getTipo().equals("FIREWALL")) {
                 
-                boolean moverTodo = true; //Para comfirmar si se puede mover todo junto al paquete
+                boolean moverTodo = true;  //Para comfirmar si se puede mover todo junto al paquete
+               
                 if (new_FilaPL == filaPAQ && new_ColPL == colPAQ) {
                     if (new_FilaPAQ < 0 || new_FilaPAQ >= Controller.FILA || 
             	        new_ColPAQ < 0 || new_ColPAQ >= Controller.COLUMNA || 
@@ -141,15 +142,17 @@ public class Game {
                 }
                 
                 if (moverTodo) {
+                	
                     verificarTrampa(new_FilaPL, new_ColPL); //Verifica si paso por una trampa
                     
                     if (new_FilaPL == filaPAQ && new_ColPL == colPAQ) {
+                    	
                         casillaRESTAURAR(filaPAQ, colPAQ);
                         paquete.setFila(new_FilaPAQ);
                         paquete.setColumna(new_ColPAQ);
                         tablero.setCasilla(new_FilaPAQ, new_ColPAQ).setTipo("PAQUETE");
                         
-                        // JUGADOR SE MUEVE A CASILLA "NA" O PUERTO
+                        // PAQUEETE SE MUEVE A CASILLA "NA" O PUERTO
                         for (int i = 0; i < Controller.PUERTOS; i++) { 
                             if (new_FilaPAQ == puerto[i].getFila() && new_ColPAQ == puerto[i].getColumna()) {
                                 int orden = jugador.getPuertosTocados() + 1;
@@ -157,7 +160,8 @@ public class Game {
                                     
                                 if (!puerto[i].isActivo()) break; 
                                 if (puerto[i].isActivo() && (puerto[i].getNum() == orden)) { 
-                                    puerto[i].setActivo(1 == 0);
+                                	
+                                    puerto[i].setActivo(false);
                                     jugador.setPuertosTocados(jugador.getPuertosTocados() + 1);
                                 }                                
                             }
@@ -236,11 +240,14 @@ public class Game {
      */
     private void objetosyEnemigos(int f, int c){
     	// LÓGICA DE NODOS ENERGÉTICOS
+    	
         for(int n = 0; n < Controller.CANT_NODOS; n++) {
             if(nodo[n] != null && nodo[n].isAct()) { 
                 if(nodo[n].getFila() == f && nodo[n].getColumna() == c) {
+                	
                     int eng = (int)(Controller.GRID_TOTAL * 0.10);
                     Controller.MOV = Controller.MOV + eng;
+                    
                     nodo[n].setAct(false);
                     tablero.setCasilla(f, c).setTipo("PLAYER");
                     historialMovimientos.add("          └─ NODO recogido en ("
@@ -294,16 +301,22 @@ public class Game {
 
         // MOVIMIENTO ALEATORIO DEL ANTIVIRUS """"IA""""
         for(int a = 0; a < antivirus.length; a++) { 
+        	
             int filaANT = antivirus[a].getFila();
             int colANT = antivirus[a].getColumna();
+            
             int ran = (int) (Math.random() * 2); 
         	 
-            if(ran == 1) { 
+            if(ran == 1) {
+            	
                 ran = (int) (Math.random() * 2); 
                
-                if(ran == 0) { 
+                if(ran == 0) {
+                	
                 	ran = (int) (Math.random() * 3) - 1; 
+                	
                     while(ran == 0) ran = (int) (Math.random() * 3) - 1; 
+                    
                     int filaANTnew = filaANT + ran; 
         			
                     if (filaANTnew >= 0 && filaANTnew < Controller.FILA ) {
@@ -394,25 +407,12 @@ public class Game {
                 return;
             }
         }
-
-        for (int a = 0; a < firewalls.length; a++) {
-            if (firewalls[a] == null) continue;
-            int fa = firewalls[a].getFila();
-            int ca = firewalls[a].getColumna();
-
-            for (int c = 0; c < firewalls.length; c++) {
-                if (a == c || firewalls[c] == null) continue;
-                int fa2 = firewalls[c].getFila();
-                int ca2 = firewalls[c].getColumna();
-
-                if (ca == ca2 && Math.abs(fa - fa2) == 2) {
-                    if (fila == (fa + fa2) / 2 && col == ca) {
-                        tablero.setCasilla(fila, col).setTipo("TRAMPA");
-                        return; 
-                    }
-                }
-            }
+        
+        if (HayTrampa(fila, col)) {
+            tablero.setCasilla(fila, col).setTipo("TRAMPA");
+            return;
         }
+
         for (int a = 0; a < antivirus.length; a++) {
             if (antivirus[a] != null && (jugador.getFila() != antivirus[a].getFila() || jugador.getColumna() != antivirus[a].getColumna())) {
                 tablero.setCasilla(antivirus[a].getFila(), antivirus[a].getColumna()).setTipo("ANTIVIRUS");

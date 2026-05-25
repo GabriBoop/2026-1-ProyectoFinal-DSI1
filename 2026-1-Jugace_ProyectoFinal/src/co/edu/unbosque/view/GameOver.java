@@ -10,13 +10,25 @@ import javax.swing.SwingConstants;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-
+/**
+ * Panel de pantalla de fin de juego cuando el jugador pierde.
+ * <p>Muestra el mensaje "¡PERDISTE!" junto a una imagen
+ * y un boton para regresar al menu principal.
+ *
+ * @author Gabriel Alejandro Morales Diaz
+ * @author Cesar David Reyes Ruiz
+ * @author Juan David Barrera Lopez
+ */
 public class GameOver extends JPanel{
 	
 	private JPanel gameoverPanel = new JPanel();
 	private JButton btnRestart = new JButton();
 	private JLabel lbl = new JLabel();
-	
+	/**
+     * Constructor del panel de Game Over.
+     * <p>Configura el fondo, el layout, la imagen de derrota
+     * y el boton de retorno al menu.
+     */
 	public GameOver(){
 		gameoverPanel.setBackground(new Color(133,0,60));
 		gameoverPanel.setLayout(new BorderLayout());

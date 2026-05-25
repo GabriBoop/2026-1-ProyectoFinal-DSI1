@@ -6,6 +6,13 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
+/**
+ * Encargado de guardar historial de partidas (log), aqui se generan y guardan como .txt.
+ * @author Gabriel Alejandro Morales Diaz
+ * @author Cesar David Reyes Ruiz
+ * @author Juan David Barrera Lopez
+ */
+
 public class HistorialPartida {
 
     /**

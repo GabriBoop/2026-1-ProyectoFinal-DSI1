@@ -1,14 +1,29 @@
 package co.edu.unbosque.model;
+/**
+ * Representa una casilla individual dentro del tablero de juego.
+ * <p>Cada casilla tiene una posicion fija en la matriz, un tipo que determina
+ * que elemento ocupa ese espacio (jugador, paquete, enemigo, nodo, etc.) y
+ * un indicador de si el jugador ya paso por ella, lo que genera el rastro
+ * visual en el tablero.
+ *
+ * @author Gabriel Alejandro Morales Diaz
+ * @author Cesar David Reyes Ruiz
+ * @author Juan David Barrera Lopez
+ */
 
 public class Casilla {
-	// ¡ESTO NO HA SIDO USADO!
+
 	   private int fila;
 	   private int columna;
 	   private boolean visitada;
 	   private String tipo;
-//	   private String[] tipo = 
-//		   {"NA","PLAYER","PAQUETE","FIREWALL","VIRUS","PUERTO"};
-
+	   /**
+	     * Constructor de la casilla con su posicion en el tablero.
+	     * <p>Se inicializa como no visitada y con tipo {@code "NA"} (vacia).
+	     *
+	     * @param fila    fila de la casilla en la matriz
+	     * @param columna columna de la casilla en la matriz
+	     */
 	    public Casilla(int fila, int columna) {
 	        this.fila = fila;
 	        this.columna = columna;

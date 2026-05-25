@@ -10,12 +10,25 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
-
+/**
+ * Panel de pantalla de victoria cuando el jugador completa la partida de forma exitosa.
+ * <p>Muestra el mensaje "¡GANASTE!" junto a una imagen de victoria
+ * y un boton para regresar al menu principal.
+ *
+ * @author Gabriel Alejandro Morales Diaz
+ * @author Cesar David Reyes Ruiz
+ * @author Juan David Barrera Lopez
+ */
 public class WinPanel {
 	private JPanel winPanel = new JPanel();
 	private JButton btnRestart = new JButton("");
 	private JLabel lbl = new JLabel();
-	
+	/**
+     * Constructor del panel de victoria.
+     * <p>Configura el fondo oscuro, el layout,
+     * la imagen del jugador victorioso y el boton de retorno al menu.
+     * El titulo "¡GANASTE!" se muestra en amarillo en la zona superior.
+     */
 	public WinPanel(){
 		winPanel.setBackground(new Color(15,0,50));
 		winPanel.setLayout(new BorderLayout());

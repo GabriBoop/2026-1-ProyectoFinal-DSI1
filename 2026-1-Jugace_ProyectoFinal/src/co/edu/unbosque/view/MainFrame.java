@@ -1,13 +1,17 @@
 package co.edu.unbosque.view;
-import co.edu.unbosque.controller.Controller;
-
-
 import java.awt.BorderLayout;
 import java.awt.Color;
-
-
 import javax.swing.*;
-
+/**
+ * Ventana principal del juego Cyber-Infiltrator.
+ * <p>Es como contenedor principal de todos los paneles del juego.
+ * Permite el intercambio de paneles para navegar entre el menu,
+ * la configuracion, el tablero de juego y las pantallas de resultado.
+ *
+ * @author Gabriel Alejandro Morales Diaz
+ * @author Cesar David Reyes Ruiz
+ * @author Juan David Barrera Lopez
+ */
 public class MainFrame extends JFrame{ 
 	
 	private static final int ANCHO = 800; //Dimensiones de Pantalla
@@ -23,7 +27,12 @@ public class MainFrame extends JFrame{
 		setLocationRelativeTo(null); // Asegura que siempre salga en el cemtro de la pantalla del computador
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 	}
-	
+	/**
+     * Reemplaza el panel actualmente visible en el frame por uno nuevo.
+     * <p>Elimina el contenido anterior, agrga el nuevo panel al centro
+     *
+     * @param panel que se desea mostrar en pantalla
+     */
 	 public void cambiarPanel(JPanel panel) {//Cambio de pameñ (EJ: Config a Juego)
 	        getContentPane().removeAll();
 	        getContentPane().add(panel, BorderLayout.CENTER);

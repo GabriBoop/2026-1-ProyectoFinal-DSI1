@@ -26,6 +26,7 @@ public class MenuController implements ActionListener {
      *  el uso de los botones para redirigir a los paneles.
      *  <p> Al final, cambia el panel principal que es tenga actualmente, hacia el panel del menu.
      */
+    
     public static void run() {
         Controller.vnt.setTitle("Cyber-Infiltrator: Menu"); //Se prepara todo
         ReproducirAudio.reproducir("/co/edu/unbosque/sound/menu.wav");
@@ -48,6 +49,7 @@ public class MenuController implements ActionListener {
      *
      */
     public void darLectores() {
+    	
         menuPanel.getBtnPredeterminado().addActionListener(this);
         menuPanel.getBtnPredeterminado().setActionCommand("Predeterminado");
         menuPanel.getBtnPersonalizado().addActionListener(this);
@@ -142,6 +144,7 @@ public class MenuController implements ActionListener {
                 Controller.COLUMNA = (int) configPanel.getSpinCOLUMNAS().getValue();
                 Controller.GRID_TOTAL =  Controller.FILA * Controller.COLUMNA;
                 Controller.PUERTOS = (int) configPanel.getSpinPUERTOS().getValue();
+                
                 int s = configPanel.getSelectdiff().getSelectedIndex();
                 
                 if(s >= 3 && Controller.GRID_TOTAL < 40) { //Anuncio de Nivel prosiblemente imposible al hacer una Matriz tan pequeña con tantos enemigos
@@ -256,7 +259,7 @@ public class MenuController implements ActionListener {
                 tutorialpanel.setNombre("FIREWALL Y TRAMPA");
                 tutorialpanel.setIcono("src/co/edu/unbosque/images/wall_tuto.png");
                 tutorialpanel.setDescripcion("<html><center>Paredes y mas molestias...<center><br>"
-                		+ "<html><center>Siempre que quede un espacio libre entre dos casillas, se creara una TRAMPA<center><br>"
+                		+ "<html><center>Siempre que quede un espacio libre entre dos FIREWALLS, se creara una TRAMPA<center><br>"
                 		+ "<html><center>La TRAMPA te quitara Fila + Columna en la que estes a tus Movimientos<center><br>");
                 break;
 

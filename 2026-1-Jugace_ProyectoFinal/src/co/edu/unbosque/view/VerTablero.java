@@ -12,12 +12,26 @@ import java.awt.RenderingHints;
 import javax.swing.*;
 import co.edu.unbosque.controller.Controller;
 import co.edu.unbosque.model.*;
+/**
+ * Clase de visualizacion del tablero de juego en tiempo real.
+ * <p>Renderiza cada casilla del tablero como un JPanel dentro de un
+ * GridLayout, representando visualmente los elementos del juego
+ * (jugador, antivirus, scanner, paquete, nodo, firewall, puerto y salida)
 
+ *
+ * @author Gabriel Alejandro Morales Diaz
+ * @author Cesar David Reyes Ruiz
+ * @author Juan David Barrera Lopez
+ */
 public class VerTablero {
 	
 	private static JPanel gridPanel = new JPanel();
 	private JPanel[] paneles = new JPanel[Controller.GRID_TOTAL];
-	
+	  /**
+     * Constructor de la vista del tablero.
+     * <p>Inicializa el grid con {@code GridLayout} usando las dimensiones de filas
+     * y columnas definidas en {@code Controller}, y agrega un panel por cada casilla.
+     */
 	public VerTablero() {
 		
 		gridPanel.setLayout(new GridLayout(Controller.FILA, Controller.COLUMNA)); //Creacion GRID con datos de FILA y COLUMNA
@@ -31,6 +45,19 @@ public class VerTablero {
 		}
 	}
 	
+	 /**
+     * Renderiza completamente el tablero con el estado actual de todos los objetos del juego.
+     * <p>Recorre cada casilla del tablero, determina su tipo y coloca el icono correspondiente.
+     * Adicionalmente pinta el rastro del jugador, y los rangos de peligro de antivirus
+     * y scanners con colores de fondo diferenciados.
+     *
+     * @param tablero   Matriz de casillas del juego
+     * @param salida    Indica si la puerta de escape esta activa
+     * @param puerto    arreglo de puertos con posicion y estado de cada puerto
+     * @param antivirus arreglo de antivirus con posicion de cada enemigo
+     * @param scanner   arreglo de scanner con posicion de cada scanner
+     * @param jugador   el player con su posicion y estado de sigilo actual
+     */
 	
 	public void ver(Tablero tablero ,Salida salida, Puertos[] puerto, AntiVirus[] antivirus, Scanner[] scanner, Player jugador) {
 		//Import de todo del Controller
@@ -193,8 +220,15 @@ public class VerTablero {
 		gridPanel.revalidate();
 		gridPanel.repaint();
 	}
-	
-	public ImageIcon obtenerRENDER(String ruta) {
+    /**
+     * Carga y escala una imagen estatica (PNG) al tamaño proporcional de la casilla.
+     * <p>Calcula el tamaño optimo segun las dimensiones actuales del grid y la cantidad
+     * de filas y columnas, con un margen de 18 pixeles.
+     *
+     * @param ruta ruta del archivo de imagen a cargar
+     * @return un {@code ImageIcon} con la imagen escalada al tamaño de la casilla
+     */
+	public ImageIcon obtenerRENDER(String ruta) { //Ayudado con IA
 	    ImageIcon original = new ImageIcon(ruta);
 	    
 	    int anchoCasilla = gridPanel.getWidth() / Controller.COLUMNA;
@@ -213,8 +247,18 @@ public class VerTablero {
 	    
 	    return new ImageIcon(imgEscalada);
 	}
-	
-	public ImageIcon obtenerRENDER_GIF(String ruta) {
+	  /**
+     * Carga y escala un GIF animado al tamaño proporcional de la casilla,
+     * preservando la animacion original.
+     * <p>No escala los frames directamente (lo cual rompe la animacion), sino que
+     * crea un {@code ImageIcon} anonimo que sobreescribe {@code paintIcon} para
+     * dibujar la imagen escalada en tiempo real, manteniendo el loop de animacion
+     * activo gracias al {@code ImageObserver}.
+     *
+     * @param ruta ruta del archivo GIF animado a cargar
+     * @return un {@code ImageIcon} con el GIF animado escalado correctamente
+     */
+	public ImageIcon obtenerRENDER_GIF(String ruta) { //Ayudado con IA
 	    ImageIcon original = new ImageIcon(ruta);
 	    
 	    int anchoCasilla = gridPanel.getWidth() / Controller.COLUMNA;
@@ -230,8 +274,6 @@ public class VerTablero {
 	    
 	    final int size = dimensionFinal;
 	    
-	    // Creamos un ImageIcon al vuelo que sobrescribe sus instrucciones de dibujado.
-	    // En lugar de escalar la imagen y romperla, la dibuja escalada en tiempo real.
 	    return new ImageIcon(original.getImage()) {
 	        @Override
 	        public void paintIcon(Component c, Graphics g, int x, int y) {

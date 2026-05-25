@@ -50,6 +50,7 @@ public class MovimientoController extends JPanel implements ActionListener {
      */
     
     public void input() {
+    	
         InputMap in = getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
         ActionMap act = getActionMap();
         
@@ -107,6 +108,7 @@ public class MovimientoController extends JPanel implements ActionListener {
      * @param direccion <p> el INPUT hecho por el jugador.
      */
     private void procesarMovimiento(String direccion) {
+    	
     	if (direccion.equals("RESET")) {
             Controller.turno = 0;
             Controller.MOV = Controller.GRID_TOTAL;
@@ -120,9 +122,11 @@ public class MovimientoController extends JPanel implements ActionListener {
             MenuController.run();
             return; 
         }
+    	
     	//Se lleva input a GAME
         game.ejecutarMovimiento(direccion);
         // COSAS DE VISTA
+        
         movimientospanel.getTrn().setText("TURNO: " + Controller.turno);
         movimientospanel.getTxt().setText("MOVIMIENTOS: " + Controller.MOV);
         movimientospanel.actualizarPuertosTocados(jugador.getPuertosTocados());

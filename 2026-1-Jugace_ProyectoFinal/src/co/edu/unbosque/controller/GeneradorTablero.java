@@ -33,6 +33,7 @@ public class GeneradorTablero {
 	public static void run(Tablero tablero,Player jugador,Paquete paquete, Salida salida, Puertos[] puertos, int cantpuertos, AntiVirus[] antivirus,Nodo[] nodo,FireWalls[] firewall, Scanner[] scanner, int CANT_ANTIVIRUS) {
 		//Importa objetos Controller
 		VerTablero.getPanel().removeAll();
+		
 		jugador.setFila(0);
 		jugador.setColumna(0);
 		tablero.setCasilla(0, 0).setTipo("PLAYER");
@@ -45,7 +46,6 @@ public class GeneradorTablero {
 		salida.setColumna(Controller.COLUMNA-1);
 		tablero.setCasilla(Controller.FILA-1,Controller.COLUMNA-1).setTipo("SALIDA");
 		
-		tablero.setCasilla(1, 1).setTipo("PAQUETE");
 		tablero.setCasilla(0, 1).setTipo("NO"); //PARA QUE NO SE GENERE NADA ALREDEDOR DE LA SALIDA NI
 		tablero.setCasilla(1, 0).setTipo("NO");
 		tablero.setCasilla(Controller.FILA-1,Controller.COLUMNA-2).setTipo("NO");
@@ -54,7 +54,7 @@ public class GeneradorTablero {
 		//PUERTOS
 		for(int p = 0; p < Controller.PUERTOS; p++) {
 			
-			int filaPrt = (int) (Math.random() * Controller.FILA); //Ramdon de Puertos
+			int filaPrt = (int) (Math.random() * Controller.FILA); //Random de Puertos
 			int columnaPrt = (int) (Math.random() * Controller.COLUMNA);
 			
 			while(filaPrt == 0 || filaPrt == Controller.FILA - 1 || //Hace que no puedan salir en los bordes del mapa8888888888888
@@ -67,6 +67,7 @@ public class GeneradorTablero {
 			puertos[p] = new Puertos(filaPrt, columnaPrt, p+1);
 			tablero.setCasilla(filaPrt, columnaPrt).setTipo("PUERTO");
 		}
+		
 		// SCANNERS
 		for(int p = 0; p < Controller.CANT_SCANNERS; p++) {
 			
@@ -75,13 +76,13 @@ public class GeneradorTablero {
 			
 			while(!tablero.setCasilla(filaSC, columnaSC).getTipo().equals("NA")) {
 				filaSC = (int) (Math.random() * Controller.FILA); //Ramdon de Puertos
-				columnaSC = (int) (Math.random() * Controller.COLUMNA);
-				
+				columnaSC = (int) (Math.random() * Controller.COLUMNA);	
 			}
 			
 			scanner[p] = new Scanner(filaSC, columnaSC);
 			tablero.setCasilla(filaSC, columnaSC).setTipo("SCANNER");
 		}
+		
 		// ANTIVIRUS
 		for(int p = 0; p < Controller.CANT_ANTIVIRUS; p++) {
 			

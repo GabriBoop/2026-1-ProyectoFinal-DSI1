@@ -6,7 +6,16 @@ import java.awt.GridBagLayout;
 import java.awt.Image;
 import java.awt.Insets;
 import javax.swing.*;
-
+/**
+ * Panel de configuracion personalizada de partida.
+ * <p>Permite al jugador seleccionar la dificultad,
+ * el numero de filas, columnas y puertos, asi como activar el modo de orden inverso.
+ * Se muestra antes de iniciar una partida personalizada.
+ *
+ * @author Gabriel Alejandro Morales Diaz
+ * @author Cesar David Reyes Ruiz
+ * @author Juan David Barrera Lopez
+ */
 public class ConfigPanel {
 	
 	private static JPanel confPanel = new JPanel(); //Panel y mucha cosa rara
@@ -27,6 +36,12 @@ public class ConfigPanel {
 	private JLabel lblFila = new JLabel();
 	private JLabel lblCol = new JLabel();
 	private JLabel lblPrt = new JLabel();
+	/**
+     * Constructor del panel de configuracion.
+     * <p>Inicializa y organiza todos los componentes graficos mediante
+     * {@code GridBagLayout}, asignando valores predeterminados, estilos
+     * visuales e imagenes a los botones.
+     */
 	
 	public ConfigPanel() {
 		

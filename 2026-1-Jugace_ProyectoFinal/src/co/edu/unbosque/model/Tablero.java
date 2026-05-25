@@ -3,13 +3,29 @@ package co.edu.unbosque.model;
 import co.edu.unbosque.controller.*;
 import co.edu.unbosque.model.*;
 
+/**
+ * Representa el tablero de juego como una matriz bidimensional de casillas.
+ * <p>Se inicializa con las dimensiones configuradas en {@code Controller}
+ * y crea una casilla en cada posicion, todas con tipo "NA" (vacio).
+ * Es la estructura central que los demas objetos del juego consultan y modifican
+ * para reflejar el estado actual de cada celda del tablero.
+ *
+ * @author Gabriel Alejandro Morales Diaz
+ * @author Cesar David Reyes Ruiz
+ * @author Juan David Barrera Lopez
+ */
 public class Tablero {
 
 	 private int filas;
 	 private int columnas;
-	 private Player jugador;
 	 private Casilla[][] casillas;
-	 private Puertos puertos;
+	 
+	 /**
+	     * Constructor del tablero.
+	     * <p>Crea la matriz de casillas con las dimensiones actuales de
+	     * {@code Controller.FILA} y {@code Controller.COLUMNA}, e inicializa
+	     * cada casilla con tipo {@code "NA"}.
+	     */
 	 
 	 public Tablero() {
 		 

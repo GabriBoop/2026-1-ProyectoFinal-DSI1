@@ -5,7 +5,16 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import co.edu.unbosque.controller.Controller;
 import co.edu.unbosque.controller.MenuController;
-
+/**
+ * Panel de tutorial interactivo del juego.
+ * <p>Permite al jugador explorar informacion sobre cada elemento del tablero
+ * (jugador, antivirus, scanner, paquete, puerto, nodo, firewall, entre otros)
+ * mediante botones de seleccion. Al presionar cada boton se actualiza el icono,
+ *
+ * @author Gabriel Alejandro Morales Diaz
+ * @author Cesar David Reyes Ruiz
+ * @author Juan David Barrera Lopez
+ */
 public class TutorialPanel extends JPanel {
 	
 
@@ -28,7 +37,11 @@ public class TutorialPanel extends JPanel {
     private JButton ver_mas = new JButton("MAS");
     private JButton btnvolver = new JButton("VOLVER");
 
-
+    /**
+     * Constructor del panel de tutorial.
+     * <p>Inicializa el layout general con {@code BorderLayout}, crea y estiliza
+     * cada boton.
+     */
     public TutorialPanel() {
         
         setBackground(new Color(25, 0, 80));
@@ -97,7 +110,14 @@ public class TutorialPanel extends JPanel {
         add(botonPanel, BorderLayout.SOUTH);
         add(generalPanel, BorderLayout.CENTER);
     }
-
+    /**
+     * Aplica el estilo visual del tutorial a un boton de navegacion.
+     * <p>Asigna el comando de accion, la fuente personalizada, color de texto blanco,
+     * fondo oscuro y borde blanco, siguiendo la estetica del juego.
+     *
+     * @param btn   el {@code JButton} al que se aplicara el estilo
+     * @param tecla el {@code ActionCommand} que identificara el boton al ser presionado
+     */
     private void hacerBoton(JButton btn, String tecla) {
         btn.setActionCommand(tecla);
         btn.setFont(PonerFont.cargar(Font.BOLD, 15));

@@ -43,7 +43,6 @@ public class Controller{
 	private static Paquete paquete;
 	private static Salida salida;							
 	
-	
 	private static Puertos[] puerto = new Puertos[PUERTOS];
 	private static AntiVirus[] antivirus = new AntiVirus[CANT_ANTIVIRUS];
 	private static Nodo[] nodo = new Nodo[CANT_NODOS];
@@ -55,7 +54,10 @@ public class Controller{
 	public static String musica = "/co/edu/unbosque/sound/sneakman.wav";
 	public static String click = "/co/edu/unbosque/sound/Click.wav";
 	
-	
+	/**
+	 * Clase incializadora del Menu, Paneles e Importacion de objetos a otros metodos o clases,
+	 * <strong>el cerebro principal de la aplicacion<strong>
+	 */
 	public Controller(){
 		vnt = new MainFrame();
 		verTablero = new VerTablero();
@@ -76,6 +78,7 @@ public class Controller{
 	 */
 	
 	public static void mostrarTablero() {
+		
 		ReproducirAudio.reproducir(musica);
 	    tablero = new Tablero();
 	    movimientosPanel = new MovimientosPanel();
@@ -83,6 +86,7 @@ public class Controller{
 	    jugador = new Player(0,0);
 	    paquete = new Paquete(1,1);
 	    salida = new Salida(FILA-1,COLUMNA-1);
+	    
 	    game = new Game(tablero, jugador, paquete, salida, puerto, antivirus, nodo, scanner, firewall);
 	    
 	    GeneradorTablero.run(tablero,jugador,paquete,salida,puerto,PUERTOS, antivirus,nodo,firewall,scanner, CANT_ANTIVIRUS); //Genera Talbero
@@ -91,6 +95,7 @@ public class Controller{
 	    
 	    movimientoController = new MovimientoController(game, verTablero, movimientosPanel, jugador);
 	    movimientoController.input();
+	    
 	    gamePanel.add(movimientoController); 
 	    gamePanel.add(verTablero.getPanel(), BorderLayout.CENTER);
 
@@ -129,6 +134,7 @@ public class Controller{
 		ReproducirAudio.reproducir("/co/edu/unbosque/sound/gameover.wav"); 
 		INVERSO = false;
 		vnt.cambiarPanel(gameover.getPanel());
+		
 		gameover.getBtnRestart().addActionListener(new ActionListener() {
 	        
 	        public void actionPerformed(ActionEvent e) {

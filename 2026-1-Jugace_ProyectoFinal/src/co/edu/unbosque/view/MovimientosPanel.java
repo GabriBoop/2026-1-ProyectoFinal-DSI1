@@ -3,7 +3,16 @@ package co.edu.unbosque.view;
 import javax.swing.*;
 import java.awt.*;
 import co.edu.unbosque.controller.Controller;
-
+/**
+ * Panel lateral de informacion de partida en tiempo real.
+ * <p>Muestra el turno actual, el contador de movimientos, el estado de sigilo
+ * del jugador, los puertos enlazados, la cantidad de antivirus y scanners,
+ * y el orden de los puertos. Se actualiza dinamicamente durante el juego.
+ *
+ * @author Gabriel Alejandro Morales Diaz
+ * @author Cesar David Reyes Ruiz
+ * @author Juan David Barrera Lopez
+ */
 public class MovimientosPanel extends JPanel {
 	
     private JPanel movPanel = new JPanel(); 
@@ -24,7 +33,14 @@ public class MovimientosPanel extends JPanel {
     private JLabel txtSigilo = new JLabel("SIGILO: INACTIVO");
    
     private ImageIcon iconoPuerto;
-
+    
+    /**
+     * Constructor del panel de movimientos.
+     * <p>Inicializa y organiza todos los componentes visuales del panel lateral,
+     * crea los slots de puertos segun la cantidad definida en {@code Controller.PUERTOS},
+     * y configura la animacion inicial del jugador en estado de espera.
+     */
+    
     public MovimientosPanel() {
       
         setPreferredSize(new Dimension(300, 500));
@@ -38,12 +54,14 @@ public class MovimientosPanel extends JPanel {
         trn.setForeground(Color.CYAN);
         trn.setFont(PonerFont.cargar(Font.BOLD, 35));
         
+        //PUERTOS
         lblTituloPuertos.setForeground(Color.WHITE);
         lblTituloPuertos.setFont(PonerFont.cargar(Font.BOLD, 20));
         
         puertosContenedor.setLayout(new GridLayout(0, 3, 5, 5));
         puertosContenedor.setBackground(new Color(5,0,65));
         slotsPuertos = new JLabel[Controller.PUERTOS];
+        
         iconoPuerto = obtenerIconoEscalado("src/co/edu/unbosque/images/save.png", 70, 70);
 
         for (int i = 0; i < Controller.PUERTOS; i++) {
@@ -114,36 +132,48 @@ public class MovimientosPanel extends JPanel {
         movPanel.add(txtAntivirus, gbc2);
         gbc2.gridy = 9;
         movPanel.add(txtScanners, gbc2);
-
         
         setLayout(new BorderLayout());
         movPanel.setBackground(new Color(5,0,65));
         add(movPanel, BorderLayout.CENTER);
     }
-
+    /**
+     * Carga una imagen desde la ruta indicada y la escala al tamaño especificado.
+     *
+     * @param ruta  ruta del archivo de imagen a cargar
+     * @param ancho ancho deseado de la imagen escalada en pixeles
+     * @param alto  alto deseado de la imagen escalada en pixeles
+     * @return un {@code ImageIcon} escalado, o {@code null} si ocurre un error
+     */
     private ImageIcon obtenerIconoEscalado(String ruta, int ancho, int alto) {
-        try {
-            ImageIcon original = new ImageIcon(ruta);
-            Image img = original.getImage();
-            Image nuevaImg = img.getScaledInstance(ancho, alto, Image.SCALE_SMOOTH);
-            return new ImageIcon(nuevaImg);
-        } catch (Exception e) {
-            return null;
-        }
+        ImageIcon original = new ImageIcon(ruta);
+        Image img = original.getImage();
+        Image nuevaImg = img.getScaledInstance(ancho, alto, Image.SCALE_SMOOTH);
+        return new ImageIcon(nuevaImg);
     }
    
+    /**
+     * Actualiza la imagen animada del jugador segun su estado actual.
+     *
+     * @param ruta ruta del archivo GIF o imagen que representa el nuevo estado del jugador
+     */
     public void actualizarGifJugador(String ruta) {
         ImageIcon newgif = new ImageIcon(ruta);
         plyState.setIcon(newgif);
     }
     
-
+    /**
+     * Actualiza visualmente los slots de puertos segun la cantidad que el jugador ya ha tocado.
+     * <p>Los puertos visitados muestran el icono de puerto enlazado, los restantes se limpian.
+     *
+     * @param cantidadTocados numero de puertos que el jugador ha enlazado hasta el momento
+     */
     public void actualizarPuertosTocados(int cantidadTocados) {
         for (int i = 0; i < slotsPuertos.length; i++) {
             if (i < cantidadTocados) {
                 slotsPuertos[i].setIcon(iconoPuerto); 
-            } else {
-                slotsPuertos[i].setIcon(null);
+            } 
+            else {
                 slotsPuertos[i].setBackground(Color.BLACK);
             }
         }

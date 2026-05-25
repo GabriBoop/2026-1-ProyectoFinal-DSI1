@@ -1,53 +1,178 @@
 --------------------------------------------
        CYBER INFILTRATOR - HISTORIAL
 --------------------------------------------
-Fecha y hora : 23/05/2026 16:28:43
-Resultado    : DERROTA (Capturado por Antivirus)
-Turnos       : 31
-Mov restantes: 69
-Puertos      : 0 / 5
+Fecha y hora : 25/05/2026 11:20:41
+Resultado    : VICTORIA
+Turnos       : 148
+Mov restantes: 37
+Puertos      : 3 / 3
 --------------------------------------------
            SECUENCIA DE MOVIMIENTOS
 --------------------------------------------
-    1. Turno 1 | ABAJO  →  pos(1,0)  | MOV restantes: 95  | Puertos: 0/5
-    2. Turno 2 | DERECHA  →  pos(1,1)  | MOV restantes: 94  | Puertos: 0/5
-    3. Turno 3 | ARRIBA  →  pos(0,1)  | MOV restantes: 93  | Puertos: 0/5
-    4. Turno 4 | DERECHA  →  pos(0,2)  | MOV restantes: 92  | Puertos: 0/5
-    5. Turno 5 | ABAJO  →  pos(1,2)  | MOV restantes: 91  | Puertos: 0/5
-    6.           └─ SCANNER detectado  -MOV: -4
-    7. Turno 6 | IZQUIERDA  →  pos(1,1)  | MOV restantes: 86  | Puertos: 0/5
-    8. Turno 7 | ABAJO  →  pos(2,1)  | MOV restantes: 85  | Puertos: 0/5
-    9. Turno 8 | ABAJO  →  pos(3,1)  | MOV restantes: 84  | Puertos: 0/5
-   10. Turno 9 | ABAJO  →  pos(4,1)  | MOV restantes: 83  | Puertos: 0/5
-   11.           └─ NODO recogido en (4,1)  +MOV: +9
-   12. Turno 10 | ARRIBA  →  pos(3,1)  | MOV restantes: 91  | Puertos: 0/5
-   13. Turno 11 | ARRIBA  →  pos(2,1)  | MOV restantes: 90  | Puertos: 0/5
-   14. Turno 12 | DERECHA  →  pos(2,2)  | MOV restantes: 89  | Puertos: 0/5
-   15. Turno 13 | ARRIBA  →  pos(1,2)  | MOV restantes: 88  | Puertos: 0/5
-   16. Turno 14 | DERECHA  →  pos(1,3)  | MOV restantes: 87  | Puertos: 0/5
-   17. Turno 15 | ABAJO  →  pos(2,3)  | MOV restantes: 86  | Puertos: 0/5
-   18.           └─ SCANNER detectado  -MOV: -4
-   19. Turno 16 | ABAJO  →  pos(3,3)  | MOV restantes: 81  | Puertos: 0/5
-   20. Turno 17 | IZQUIERDA  →  pos(3,2)  | MOV restantes: 80  | Puertos: 0/5
-   21. Turno 18 | ABAJO  →  pos(4,2)  | MOV restantes: 79  | Puertos: 0/5
-   22. Turno 19 | DERECHA  →  pos(4,3)  | MOV restantes: 78  | Puertos: 0/5
-   23.           └─ SCANNER detectado  -MOV: -3
-   24. Turno 20 | DERECHA  →  pos(4,4)  | MOV restantes: 74  | Puertos: 0/5
-   25.           └─ SCANNER detectado  -MOV: -3
-   26. Turno 21 | DERECHA  →  pos(4,5)  | MOV restantes: 70  | Puertos: 0/5
-   27. Turno 22 | DERECHA  →  pos(4,6)  | MOV restantes: 69  | Puertos: 0/5
-   28. Turno 23 | DERECHA  →  pos(4,7)  | MOV restantes: 68  | Puertos: 0/5
-   29. Turno 24 | ARRIBA  →  pos(3,7)  | MOV restantes: 67  | Puertos: 0/5
-   30. Turno 25 | DERECHA  →  pos(3,8)  | MOV restantes: 66  | Puertos: 0/5
-   31. Turno 26 | ABAJO  →  pos(4,8)  | MOV restantes: 65  | Puertos: 0/5
-   32. Turno 27 | ABAJO  →  pos(5,8)  | MOV restantes: 64  | Puertos: 0/5
-   33.           └─ NODO recogido en (5,8)  +MOV: +9
-   34. Turno 28 | IZQUIERDA  →  pos(5,7)  | MOV restantes: 72  | Puertos: 0/5
-   35. Turno 29 | ABAJO  →  pos(6,7)  | MOV restantes: 71  | Puertos: 0/5
-   36. Turno 30 | ARRIBA  →  pos(5,7)  | MOV restantes: 70  | Puertos: 0/5
-   37. Turno 31 | DERECHA  →  pos(5,8)  | MOV restantes: 69  | Puertos: 0/5
-   38. Turno 32 | ABAJO  →  pos(6,8)  | MOV restantes: 68  | Puertos: 0/5
-   39.           - ANTIVIRUS: GAME OVER
+    1. Turno 1 | DERECHA  →  pos(0,1)  | MOV restantes: 399  | Puertos: 0/3
+    2. Turno 2 | IZQUIERDA  →  pos(0,0)  | MOV restantes: 398  | Puertos: 0/3
+    3. Turno 3 | ABAJO  →  pos(1,0)  | MOV restantes: 397  | Puertos: 0/3
+    4. Turno 4 | DERECHA  →  pos(1,1)  | MOV restantes: 396  | Puertos: 0/3
+    5. Turno 5 | DERECHA  →  pos(1,2)  | MOV restantes: 395  | Puertos: 0/3
+    6. Turno 6 | DERECHA  →  pos(1,3)  | MOV restantes: 394  | Puertos: 0/3
+    7. Turno 7 | DERECHA  →  pos(1,4)  | MOV restantes: 393  | Puertos: 0/3
+    8. Turno 8 | ARRIBA  →  pos(0,4)  | MOV restantes: 392  | Puertos: 0/3
+    9. Turno 9 | DERECHA  →  pos(0,5)  | MOV restantes: 391  | Puertos: 0/3
+   10. Turno 10 | ABAJO  →  pos(1,5)  | MOV restantes: 390  | Puertos: 0/3
+   11. Turno 11 | ABAJO  →  pos(2,5)  | MOV restantes: 389  | Puertos: 0/3
+   12. Turno 12 | ABAJO  →  pos(3,5)  | MOV restantes: 388  | Puertos: 0/3
+   13. Turno 13 | IZQUIERDA  →  pos(3,4)  | MOV restantes: 387  | Puertos: 0/3
+   14. Turno 14 | ABAJO  →  pos(4,4)  | MOV restantes: 386  | Puertos: 0/3
+   15. Turno 15 | DERECHA  →  pos(4,5)  | MOV restantes: 385  | Puertos: 0/3
+   16. Turno 16 | DERECHA  →  pos(4,6)  | MOV restantes: 384  | Puertos: 0/3
+   17. Turno 17 | DERECHA  →  pos(4,7)  | MOV restantes: 383  | Puertos: 0/3
+   18. Turno 18 | ARRIBA  →  pos(3,7)  | MOV restantes: 382  | Puertos: 0/3
+   19. Turno 19 | DERECHA  →  pos(3,8)  | MOV restantes: 381  | Puertos: 0/3
+   20. Turno 20 | ABAJO  →  pos(4,8)  | MOV restantes: 380  | Puertos: 0/3
+   21. Turno 21 | IZQUIERDA  →  pos(4,7)  | MOV restantes: 379  | Puertos: 0/3
+   22. Turno 22 | ABAJO  →  pos(5,7)  | MOV restantes: 378  | Puertos: 0/3
+   23. Turno 23 | ARRIBA  →  pos(4,7)  | MOV restantes: 377  | Puertos: 0/3
+   24. Turno 24 | DERECHA  →  pos(4,8)  | MOV restantes: 376  | Puertos: 0/3
+   25. Turno 25 | ABAJO  →  pos(5,8)  | MOV restantes: 375  | Puertos: 0/3
+   26. Turno 26 | IZQUIERDA  →  pos(5,7)  | MOV restantes: 374  | Puertos: 0/3
+   27. Turno 27 | ABAJO  →  pos(6,7)  | MOV restantes: 373  | Puertos: 0/3
+   28. Turno 28 | DERECHA  →  pos(6,8)  | MOV restantes: 372  | Puertos: 0/3
+   29. Turno 29 | DERECHA  →  pos(6,9)  | MOV restantes: 371  | Puertos: 0/3
+   30. Turno 30 | DERECHA  →  pos(6,10)  | MOV restantes: 370  | Puertos: 0/3
+   31. Turno 31 | DERECHA  →  pos(6,11)  | MOV restantes: 369  | Puertos: 0/3
+   32. Turno 32 | DERECHA  →  pos(6,12)  | MOV restantes: 368  | Puertos: 0/3
+   33. Turno 33 | ARRIBA  →  pos(5,12)  | MOV restantes: 367  | Puertos: 0/3
+   34. Turno 34 | DERECHA  →  pos(5,13)  | MOV restantes: 366  | Puertos: 0/3
+   35. Turno 35 | ABAJO  →  pos(6,13)  | MOV restantes: 365  | Puertos: 0/3
+   36. Turno 36 | ABAJO  →  pos(7,13)  | MOV restantes: 364  | Puertos: 0/3
+   37.           └─ SCANNER detectado  -MOV: -18
+   38. Turno 37 | ABAJO  →  pos(8,13)  | MOV restantes: 345  | Puertos: 0/3
+   39. Turno 38 | ABAJO  →  pos(9,13)  | MOV restantes: 344  | Puertos: 0/3
+   40. Turno 39 | IZQUIERDA  →  pos(9,12)  | MOV restantes: 343  | Puertos: 0/3
+   41. Turno 40 | ABAJO  →  pos(10,12)  | MOV restantes: 342  | Puertos: 0/3
+   42. Turno 41 | DERECHA  →  pos(10,13)  | MOV restantes: 341  | Puertos: 0/3
+   43. Turno 42 | DERECHA  →  pos(10,14)  | MOV restantes: 340  | Puertos: 0/3
+   44. Turno 43 | DERECHA  →  pos(10,15)  | MOV restantes: 339  | Puertos: 0/3
+   45. Turno 44 | ARRIBA  →  pos(9,15)  | MOV restantes: 338  | Puertos: 0/3
+   46. Turno 45 | DERECHA  →  pos(9,16)  | MOV restantes: 337  | Puertos: 0/3
+   47.           └─ SCANNER detectado  -MOV: -16
+   48. Turno 46 | ABAJO  →  pos(10,16)  | MOV restantes: 320  | Puertos: 0/3
+   49. Turno 47 | ABAJO  →  pos(11,16)  | MOV restantes: 319  | Puertos: 0/3
+   50. Turno 48 | ABAJO  →  pos(12,16)  | MOV restantes: 318  | Puertos: 0/3
+   51.           └─ SCANNER detectado  -MOV: -15
+   52. Turno 49 | ABAJO  →  pos(13,16)  | MOV restantes: 302  | Puertos: 0/3
+   53. Turno 50 | IZQUIERDA  →  pos(13,15)  | MOV restantes: 301  | Puertos: 0/3
+   54. Turno 51 | ABAJO  →  pos(14,15)  | MOV restantes: 300  | Puertos: 0/3
+   55. Turno 52 | DERECHA  →  pos(14,16)  | MOV restantes: 299  | Puertos: 0/3
+   56. Turno 53 | DERECHA  →  pos(14,17)  | MOV restantes: 298  | Puertos: 1/3
+   57. Turno 54 | ABAJO  →  pos(15,17)  | MOV restantes: 297  | Puertos: 1/3
+   58. Turno 55 | DERECHA  →  pos(15,18)  | MOV restantes: 296  | Puertos: 1/3
+   59. Turno 56 | DERECHA  →  pos(15,19)  | MOV restantes: 295  | Puertos: 1/3
+   60. Turno 57 | ARRIBA  →  pos(14,19)  | MOV restantes: 294  | Puertos: 1/3
+   61. Turno 58 | IZQUIERDA  →  pos(14,18)  | MOV restantes: 293  | Puertos: 1/3
+   62. Turno 59 | ABAJO  →  pos(15,18)  | MOV restantes: 292  | Puertos: 1/3
+   63. Turno 60 | IZQUIERDA  →  pos(15,17)  | MOV restantes: 291  | Puertos: 1/3
+   64. Turno 61 | ARRIBA  →  pos(14,17)  | MOV restantes: 290  | Puertos: 1/3
+   65. Turno 62 | ARRIBA  →  pos(13,17)  | MOV restantes: 289  | Puertos: 1/3
+   66. Turno 63 | ARRIBA  →  pos(12,17)  | MOV restantes: 288  | Puertos: 2/3
+   67. Turno 64 | DERECHA  →  pos(12,18)  | MOV restantes: 287  | Puertos: 2/3
+   68. Turno 65 | ARRIBA  →  pos(11,18)  | MOV restantes: 286  | Puertos: 2/3
+   69. Turno 66 | IZQUIERDA  →  pos(11,17)  | MOV restantes: 285  | Puertos: 2/3
+   70.           └─ SCANNER detectado  -MOV: -14
+   71. Turno 67 | IZQUIERDA  →  pos(11,16)  | MOV restantes: 270  | Puertos: 2/3
+   72.           └─ SCANNER detectado  -MOV: -13
+   73. Turno 68 | IZQUIERDA  →  pos(11,15)  | MOV restantes: 256  | Puertos: 2/3
+   74.           └─ SCANNER detectado  -MOV: -12
+   75. Turno 69 | IZQUIERDA  →  pos(11,14)  | MOV restantes: 243  | Puertos: 2/3
+   76. Turno 70 | ABAJO  →  pos(12,14)  | MOV restantes: 242  | Puertos: 2/3
+   77. Turno 71 | IZQUIERDA  →  pos(12,13)  | MOV restantes: 241  | Puertos: 2/3
+   78. Turno 72 | ARRIBA  →  pos(11,13)  | MOV restantes: 240  | Puertos: 2/3
+   79. Turno 73 | DERECHA  →  pos(11,14)  | MOV restantes: 239  | Puertos: 2/3
+   80.           └─ SCANNER detectado  -MOV: -12
+   81. Turno 74 | ARRIBA  →  pos(10,14)  | MOV restantes: 226  | Puertos: 2/3
+   82.           └─ SCANNER detectado  -MOV: -11
+   83. Turno 75 | IZQUIERDA  →  pos(10,13)  | MOV restantes: 214  | Puertos: 2/3
+   84.           └─ SCANNER detectado  -MOV: -10
+   85. Turno 76 | IZQUIERDA  →  pos(10,12)  | MOV restantes: 203  | Puertos: 2/3
+   86. Turno 77 | DERECHA  →  pos(10,13)  | MOV restantes: 202  | Puertos: 2/3
+   87.           └─ SCANNER detectado  -MOV: -10
+   88. Turno 78 | ABAJO  →  pos(11,13)  | MOV restantes: 191  | Puertos: 2/3
+   89. Turno 79 | ABAJO  →  pos(12,13)  | MOV restantes: 190  | Puertos: 2/3
+   90. Turno 80 | IZQUIERDA  →  pos(12,12)  | MOV restantes: 189  | Puertos: 2/3
+   91. Turno 81 | IZQUIERDA  →  pos(12,11)  | MOV restantes: 188  | Puertos: 2/3
+   92. Turno 82 | ARRIBA  →  pos(11,11)  | MOV restantes: 187  | Puertos: 2/3
+   93. Turno 83 | ARRIBA  →  pos(10,11)  | MOV restantes: 186  | Puertos: 2/3
+   94. Turno 84 | ARRIBA  →  pos(9,11)  | MOV restantes: 185  | Puertos: 2/3
+   95. Turno 85 | ARRIBA  →  pos(8,11)  | MOV restantes: 184  | Puertos: 2/3
+   96. Turno 86 | ARRIBA  →  pos(7,11)  | MOV restantes: 183  | Puertos: 2/3
+   97. Turno 87 | IZQUIERDA  →  pos(7,10)  | MOV restantes: 182  | Puertos: 2/3
+   98. Turno 88 | ARRIBA  →  pos(6,10)  | MOV restantes: 181  | Puertos: 2/3
+   99. Turno 89 | ARRIBA  →  pos(5,10)  | MOV restantes: 180  | Puertos: 2/3
+  100. Turno 90 | DERECHA  →  pos(5,11)  | MOV restantes: 179  | Puertos: 2/3
+  101. Turno 91 | DERECHA  →  pos(5,12)  | MOV restantes: 178  | Puertos: 2/3
+  102. Turno 92 | ABAJO  →  pos(6,12)  | MOV restantes: 177  | Puertos: 2/3
+  103. Turno 93 | IZQUIERDA  →  pos(6,11)  | MOV restantes: 176  | Puertos: 2/3
+  104. Turno 94 | IZQUIERDA  →  pos(6,10)  | MOV restantes: 175  | Puertos: 2/3
+  105. Turno 95 | IZQUIERDA  →  pos(6,9)  | MOV restantes: 174  | Puertos: 2/3
+  106. Turno 96 | ABAJO  →  pos(7,9)  | MOV restantes: 173  | Puertos: 2/3
+  107. Turno 97 | IZQUIERDA  →  pos(7,8)  | MOV restantes: 172  | Puertos: 2/3
+  108. Turno 98 | ARRIBA  →  pos(6,8)  | MOV restantes: 171  | Puertos: 3/3
+  109. Turno 99 | IZQUIERDA  →  pos(6,7)  | MOV restantes: 170  | Puertos: 3/3
+  110. Turno 100 | ARRIBA  →  pos(5,7)  | MOV restantes: 169  | Puertos: 3/3
+  111. Turno 101 | ARRIBA  →  pos(4,7)  | MOV restantes: 168  | Puertos: 3/3
+  112. Turno 102 | DERECHA  →  pos(4,8)  | MOV restantes: 167  | Puertos: 3/3
+  113. Turno 103 | ABAJO  →  pos(5,8)  | MOV restantes: 166  | Puertos: 3/3
+  114. Turno 104 | ABAJO  →  pos(6,8)  | MOV restantes: 165  | Puertos: 3/3
+  115. Turno 105 | ABAJO  →  pos(7,8)  | MOV restantes: 164  | Puertos: 3/3
+  116. Turno 106 | ABAJO  →  pos(8,8)  | MOV restantes: 163  | Puertos: 3/3
+  117. Turno 107 | IZQUIERDA  →  pos(8,7)  | MOV restantes: 162  | Puertos: 3/3
+  118. Turno 108 | ABAJO  →  pos(9,7)  | MOV restantes: 161  | Puertos: 3/3
+  119. Turno 109 | DERECHA  →  pos(9,8)  | MOV restantes: 160  | Puertos: 3/3
+  120. Turno 110 | ARRIBA  →  pos(8,8)  | MOV restantes: 159  | Puertos: 3/3
+  121. Turno 111 | DERECHA  →  pos(8,9)  | MOV restantes: 158  | Puertos: 3/3
+  122. Turno 112 | ABAJO  →  pos(9,9)  | MOV restantes: 157  | Puertos: 3/3
+  123. Turno 113 | ABAJO  →  pos(10,9)  | MOV restantes: 156  | Puertos: 3/3
+  124. Turno 114 | ABAJO  →  pos(11,9)  | MOV restantes: 155  | Puertos: 3/3
+  125. Turno 115 | ABAJO  →  pos(12,9)  | MOV restantes: 154  | Puertos: 3/3
+  126. Turno 116 | IZQUIERDA  →  pos(12,8)  | MOV restantes: 153  | Puertos: 3/3
+  127. Turno 117 | ABAJO  →  pos(13,8)  | MOV restantes: 152  | Puertos: 3/3
+  128. Turno 118 | DERECHA  →  pos(13,9)  | MOV restantes: 151  | Puertos: 3/3
+  129. Turno 119 | DERECHA  →  pos(13,10)  | MOV restantes: 150  | Puertos: 3/3
+  130. Turno 120 | ARRIBA  →  pos(12,10)  | MOV restantes: 149  | Puertos: 3/3
+  131. Turno 121 | DERECHA  →  pos(12,11)  | MOV restantes: 148  | Puertos: 3/3
+  132.           └─ SCANNER detectado  -MOV: -7
+  133. Turno 122 | ABAJO  →  pos(13,11)  | MOV restantes: 140  | Puertos: 3/3
+  134.           └─ SCANNER detectado  -MOV: -7
+  135. Turno 123 | ABAJO  →  pos(14,11)  | MOV restantes: 132  | Puertos: 3/3
+  136. Turno 124 | ABAJO  →  pos(15,11)  | MOV restantes: 131  | Puertos: 3/3
+  137. Turno 125 | IZQUIERDA  →  pos(15,10)  | MOV restantes: 130  | Puertos: 3/3
+  138. Turno 126 | ABAJO  →  pos(16,10)  | MOV restantes: 129  | Puertos: 3/3
+  139. Turno 127 | DERECHA  →  pos(16,11)  | MOV restantes: 128  | Puertos: 3/3
+  140. Turno 128 | DERECHA  →  pos(16,12)  | MOV restantes: 127  | Puertos: 3/3
+  141. Turno 129 | DERECHA  →  pos(16,13)  | MOV restantes: 126  | Puertos: 3/3
+  142. Turno 130 | DERECHA  →  pos(16,14)  | MOV restantes: 125  | Puertos: 3/3
+  143. Turno 131 | ARRIBA  →  pos(15,14)  | MOV restantes: 124  | Puertos: 3/3
+  144. Turno 132 | DERECHA  →  pos(15,15)  | MOV restantes: 123  | Puertos: 3/3
+  145. Turno 133 | ABAJO  →  pos(16,15)  | MOV restantes: 122  | Puertos: 3/3
+  146. Turno 134 | IZQUIERDA  →  pos(16,14)  | MOV restantes: 121  | Puertos: 3/3
+  147. Turno 135 | ABAJO  →  pos(17,14)  | MOV restantes: 120  | Puertos: 3/3
+  148. Turno 136 | DERECHA  →  pos(17,15)  | MOV restantes: 119  | Puertos: 3/3
+  149. Turno 137 | DERECHA  →  pos(17,16)  | MOV restantes: 118  | Puertos: 3/3
+  150. Turno 138 | DERECHA  →  pos(17,17)  | MOV restantes: 117  | Puertos: 3/3
+  151.           └─ TRAMPA pisada en (17,18)  -MOV: -35
+  152. Turno 139 | DERECHA  →  pos(17,18)  | MOV restantes: 81  | Puertos: 3/3
+  153. Turno 140 | IZQUIERDA  →  pos(17,17)  | MOV restantes: 80  | Puertos: 3/3
+  154.           └─ TRAMPA pisada en (17,18)  -MOV: -35
+  155. Turno 141 | DERECHA  →  pos(17,18)  | MOV restantes: 44  | Puertos: 3/3
+  156. Turno 142 | IZQUIERDA  →  pos(17,17)  | MOV restantes: 43  | Puertos: 3/3
+  157. Turno 143 | ARRIBA  →  pos(16,17)  | MOV restantes: 42  | Puertos: 3/3
+  158. Turno 144 | ARRIBA  →  pos(15,17)  | MOV restantes: 41  | Puertos: 3/3
+  159. Turno 145 | DERECHA  →  pos(15,18)  | MOV restantes: 40  | Puertos: 3/3
+  160. Turno 146 | DERECHA  →  pos(15,19)  | MOV restantes: 39  | Puertos: 3/3
+  161. Turno 147 | ABAJO  →  pos(16,19)  | MOV restantes: 38  | Puertos: 3/3
+  162. Turno 148 | ABAJO  →  pos(17,19)  | MOV restantes: 37  | Puertos: 3/3
+  163. Turno 149 | ABAJO  →  pos(18,19)  | MOV restantes: 36  | Puertos: 3/3
+  164. *** VICTORIA: paquete extraido en salida ***
 --------------------------------------------
-Total de movimientos ejecutados: 39
+Total de movimientos ejecutados: 164
 --------------------------------------------
